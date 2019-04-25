@@ -1,0 +1,16 @@
+{
+    "name": "orkhanahmadov/goldenpay",
+    "description": "GoldenPay payment library for PHP and Laravel framework.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Orkhan I. Ahmadov",
+            "email": "ahmadov90@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^3.8"
+    }
+}
