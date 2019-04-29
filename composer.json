@@ -9,8 +9,23 @@
             "email": "ahmadov90@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.2.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "ext-json": "*"
+    },
     "require-dev": {
-        "orchestra/testbench": "^3.8"
+        "orchestra/testbench": "^3.8",
+        "blastcloud/guzzler": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orkhanahmadov\\Goldenpay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Orkhanahmadov\\Goldenpay\\Tests\\": "tests/"
+        }
     }
 }
