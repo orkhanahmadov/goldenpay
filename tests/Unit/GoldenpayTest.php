@@ -4,7 +4,6 @@ namespace Orkhanahmadov\Goldenpay\Tests\Unit;
 
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use Orkhanahmadov\Goldenpay\Goldenpay;
 use Orkhanahmadov\Goldenpay\Tests\TestCase;

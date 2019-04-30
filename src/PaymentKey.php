@@ -19,8 +19,9 @@ class PaymentKey
 
     /**
      * PaymentKey constructor.
-     * @param int $code
-     * @param string $message
+     *
+     * @param int         $code
+     * @param string      $message
      * @param string|null $paymentKey
      */
     public function __construct(int $code, string $message, ?string $paymentKey)
@@ -32,6 +33,6 @@ class PaymentKey
 
     public function paymentUrl(): string
     {
-        return 'https://rest.goldenpay.az/web/paypage?payment_key=' . $this->paymentKey;
+        return 'https://rest.goldenpay.az/web/paypage?payment_key='.$this->paymentKey;
     }
 }
