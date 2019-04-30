@@ -22,7 +22,12 @@ class GoldenpayTest extends TestCase
     {
         parent::setUp();
 
-        $this->goldenpay = new Goldenpay($this->guzzler->getClient());
+        $this->goldenpay = new Goldenpay(
+            'valid_auth_key',
+            'valid_merchant_name',
+            'lv',
+            $this->guzzler->getClient()
+        );
     }
 
     public function test_newPaymentKey_method_returns_new_payment_key()
@@ -33,10 +38,8 @@ class GoldenpayTest extends TestCase
             ->willRespond(new Response(200, [], '{"status":{"code":1,"message":"success"},"paymentKey":"1234-5678"}'));
 
         $paymentKey = $this->goldenpay->newPaymentKey(
-            'valid_auth_key',
-            'valid_merchant_name',
-            'v',
             100,
+            'v',
             'test description'
         );
 
@@ -55,10 +58,8 @@ class GoldenpayTest extends TestCase
         $this->expectExceptionMessage('some error message here');
 
         $this->goldenpay->newPaymentKey(
-            'invalid_auth_key',
-            'invalid_merchant_name',
-            'v',
             100,
+            'v',
             'invalid description'
         );
     }
@@ -70,7 +71,7 @@ class GoldenpayTest extends TestCase
             ->post('https://rest.goldenpay.az/web/service/merchant/getPaymentResult')
             ->willRespond(new Response(200, [], '{"status":{"code":1,"message":"success"},"paymentKey":"1234-5678","merchantName":"valid_merchant_name","amount":100,"checkCount":1,"paymentDate":"2019-04-30 14:16:58","cardNumber":"422865******8101","language":"lv","description":"test desc","rrn":"12345678"}'));
 
-        $result = $this->goldenpay->checkPaymentResult('invalid_auth_key', 'valid_payment_key');
+        $result = $this->goldenpay->checkPaymentResult('valid_payment_key');
 
         $this->assertEquals(1, $result->paymentKey->code);
         $this->assertEquals('success', $result->paymentKey->message);

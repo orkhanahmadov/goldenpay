@@ -2,7 +2,6 @@
 
 namespace Orkhanahmadov\Goldenpay\Tests;
 
-use Illuminate\Foundation\Application;
 use Orkhanahmadov\Goldenpay\GoldenpayServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -15,9 +14,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * @param Application $app
+     * @param \Illuminate\Foundation\Application $app
      */
-    protected function setUpDatabase(Application $app)
+    protected function setUpDatabase( $app)
     {
         include_once __DIR__.'/../src/database/migrations/create_goldenpay_payments_table.php.stub';
         (new \CreateGoldenpayPaymentsTable())->up();
@@ -29,11 +28,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
     /**
      * Resolve application aliases.
      *
-     * @param Application $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
-    protected function getPackageProviders(Application $app)
+    protected function getPackageProviders($app)
     {
         return [
             GoldenpayServiceProvider::class

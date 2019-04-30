@@ -10,41 +10,49 @@ use Orkhanahmadov\Goldenpay\Payment\Result;
 class Goldenpay
 {
     /**
+     * @var string
+     */
+    private $authKey;
+    /**
+     * @var string
+     */
+    private $merchantName;
+    /**
      * @var Client
      */
     private $client;
 
     /**
      * Goldenpay constructor.
-     * @param Client $client
+     * @param string|null $authKey
+     * @param string|null $merchantName
+     * @param Client|null $client
      */
-    public function __construct(Client $client)
+    public function __construct(string $authKey = null, string $merchantName = null, Client $client = null)
     {
-        $this->client = $client;
+        $this->authKey = $authKey ?: config('goldenpay.auth_key');
+        $this->merchantName = $merchantName ?: config('goldenpay.merchant_name');
+        $this->client = $client ?: new Client;
     }
 
     /**
-     * @param string $authKey
-     * @param string $merchantName
-     * @param string $cardType
      * @param int $amount
+     * @param string $cardType
      * @param string $description
      * @param string $lang
      * @return Key
      */
-    public function newPaymentKey(string $authKey, string $merchantName, string $cardType, int $amount, string $description, string $lang = 'lv')
+    public function newPaymentKey(int $amount, string $cardType, string $description, string $lang = 'lv')
     {
         $response = $this->client->post('https://rest.goldenpay.az/web/service/merchant/getPaymentKey', [
-            'headers' => [
-                'Accept' => 'application/json'
-            ],
+            'headers' => ['Accept' => 'application/json'],
             'json' => [
-                'merchantName' => $merchantName,
+                'merchantName' => $this->merchantName,
                 'amount' => $amount,
                 'cardType' => $cardType,
                 'description' => $description,
                 'lang' => $lang === 'az' ? 'lv' : $lang,
-                'hashCode' => md5($authKey . $merchantName . $cardType . $amount . $description),
+                'hashCode' => md5($this->authKey . $this->merchantName . $cardType . $amount . $description),
             ]
         ]);
 
@@ -57,19 +65,16 @@ class Goldenpay
     }
 
     /**
-     * @param string $authKey
      * @param string $paymentKey
      * @return Result
      */
-    public function checkPaymentResult(string $authKey, string $paymentKey)
+    public function checkPaymentResult(string $paymentKey)
     {
         $response = $this->client->post('https://rest.goldenpay.az/web/service/merchant/getPaymentResult', [
-            'headers' => [
-                'Accept' => 'application/json'
-            ],
+            'headers' => ['Accept' => 'application/json'],
             'json' => [
                 'payment_key' => $paymentKey,
-                'Hash_code' => md5($authKey . $paymentKey)
+                'Hash_code' => md5($this->authKey . $paymentKey)
             ]
         ]);
 
