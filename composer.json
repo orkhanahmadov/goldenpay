@@ -27,11 +27,11 @@
             "Orkhanahmadov\\Goldenpay\\Tests\\": "tests/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Orkhanahmadov\\Goldenpay\\LaravelServiceProvider"
-            ]
-        }
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }
