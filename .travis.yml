@@ -17,10 +17,10 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
 
 after_script:
-  - vendor/bin/test-reporter
+  - ./cc-test-reporter
 
 branches:
   only:
