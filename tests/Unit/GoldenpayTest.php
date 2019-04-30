@@ -41,6 +41,8 @@ class GoldenpayTest extends TestCase
         );
 
         $this->assertNotNull($paymentKey->paymentKey);
+        $this->assertEquals(1, $paymentKey->code);
+        $this->assertEquals('success', $paymentKey->message);
         $this->assertEquals('https://rest.goldenpay.az/web/paypage?payment_key=1234-5678', $paymentKey->paymentUrl());
     }
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Orkhanahmadov\Goldenpay\Payment;
+namespace Orkhanahmadov\Goldenpay;
 
-class Result
+class PaymentResult
 {
     /**
-     * @var Key
+     * @var PaymentKey
      */
     public $paymentKey;
     /**
@@ -47,7 +47,7 @@ class Result
      */
     public function __construct(array $paymentResult)
     {
-        $this->paymentKey = new Key($paymentResult['status']['code'], $paymentResult['status']['message'], $paymentResult['paymentKey']);
+        $this->paymentKey = new PaymentKey($paymentResult['status']['code'], $paymentResult['status']['message'], $paymentResult['paymentKey']);
         $this->merchantName = $paymentResult['merchantName'];
         $this->amount = $paymentResult['amount'];
         $this->checkCount = $paymentResult['checkCount'];

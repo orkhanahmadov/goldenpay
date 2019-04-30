@@ -4,8 +4,6 @@ namespace Orkhanahmadov\Goldenpay;
 
 use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
-use Orkhanahmadov\Goldenpay\Payment\Key;
-use Orkhanahmadov\Goldenpay\Payment\Result;
 
 class Goldenpay
 {
@@ -33,7 +31,7 @@ class Goldenpay
      * @param string $cardType
      * @param string $description
      * @param string $lang
-     * @return Key
+     * @return PaymentKey
      */
     public function newPaymentKey(string $authKey, string $merchantName, int $amount, string $cardType, string $description, string $lang = 'lv')
     {
@@ -44,7 +42,7 @@ class Goldenpay
                 'amount' => $amount,
                 'cardType' => $cardType,
                 'description' => $description,
-                'lang' => $lang === 'az' ? 'lv' : $lang,
+                'lang' => $lang,
                 'hashCode' => md5($authKey . $merchantName . $cardType . $amount . $description),
             ]
         ]);
@@ -54,7 +52,7 @@ class Goldenpay
         if ($result['status']['code'] !== 1)
             throw new GoldenpayPaymentKeyException($result['status']['message']);
 
-        return new Key($result['status']['code'], $result['status']['message'], $result['paymentKey']);
+        return new PaymentKey($result['status']['code'], $result['status']['message'], $result['paymentKey']);
     }
 
     /**
@@ -62,7 +60,7 @@ class Goldenpay
      *
      * @param string $authKey
      * @param string $paymentKey
-     * @return Result
+     * @return PaymentResult
      */
     public function checkPaymentResult(string $authKey, string $paymentKey)
     {
@@ -76,6 +74,6 @@ class Goldenpay
 
         $result = json_decode($response->getBody()->getContents(), true);
 
-        return new Result($result);
+        return new PaymentResult($result);
     }
 }

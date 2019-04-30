@@ -1,8 +1,8 @@
 <?php
 
-namespace Orkhanahmadov\Goldenpay\Payment;
+namespace Orkhanahmadov\Goldenpay;
 
-class Key
+class PaymentKey
 {
     /**
      * @var int
