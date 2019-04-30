@@ -20,7 +20,7 @@ script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml
 
 after_script:
-  - ./cc-test-reporter
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 branches:
   only:

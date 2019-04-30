@@ -2,6 +2,6 @@
 
 namespace Orkhanahmadov\Goldenpay\Tests;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
 }
