@@ -65,16 +65,15 @@ class Goldenpay
     /**
      * Checks payment result.
      *
-     * @param string $authKey
      * @param string $paymentKey
      *
      * @return PaymentResult
      */
-    public function checkPaymentResult(string $authKey, string $paymentKey)
+    public function checkPaymentResult(string $paymentKey)
     {
         $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentResult', [
             'payment_key' => $paymentKey,
-            'Hash_code'   => md5($authKey.$paymentKey),
+            'Hash_code'   => md5($this->authKey.$paymentKey),
         ]);
 
         return new PaymentResult($result);

@@ -17,7 +17,7 @@ First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` object with "auth key" 
 ```php
 use Orkhanahmadov\Goldenpay\Goldenpay;
 
-$goldenpay = new Goldenpay('auth key here', 'merchant name here');
+$goldenpay = new Goldenpay('auth-key-here', 'merchant-name-here');
 ```
 
 #### Getting payment key
@@ -43,15 +43,11 @@ $paymentKey->paymentUrl(); // full payment url
 #### Checking payment result
 To check payment result use ``checkPaymentResult`` method.
 
-Method requires following arguments:
-* **Auth key** - Get this from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/)
-* **Payment key** - Previous payment key fetched with ``newPaymentKey`` method.
+Method accepts following arguments:
+* **Payment key** - Payment key previously fetched with ``newPaymentKey`` method.
 
 ```php
-use Orkhanahmadov\Goldenpay\Goldenpay;
-
-$goldenpay = new Goldenpay();
-$paymentResult = $goldenpay->checkPaymentResult('auth_key', '1234-5678');
+$paymentResult = $goldenpay->checkPaymentResult('payment-key-here');
 ```
 
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentResult``. You can access following properties from this object instance:
