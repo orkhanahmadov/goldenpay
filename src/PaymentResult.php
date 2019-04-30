@@ -43,6 +43,7 @@ class PaymentResult
 
     /**
      * PaymentResult constructor.
+     *
      * @param array $paymentResult
      */
     public function __construct(array $paymentResult)
