@@ -23,8 +23,8 @@ class GoldenpayService
     /**
      * Goldenpay constructor.
      *
-     * @param string $authKey
-     * @param string $merchantName
+     * @param string      $authKey
+     * @param string      $merchantName
      * @param Client|null $client
      */
     public function __construct(string $authKey, string $merchantName, Client $client = null)
@@ -84,7 +84,8 @@ class GoldenpayService
      * Sends requests to GoldenPay endpoint.
      *
      * @param string $url
-     * @param array $json
+     * @param array  $json
+     *
      * @return array
      */
     private function sendRequest(string $url, array $json)
