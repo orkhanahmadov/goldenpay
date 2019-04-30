@@ -2,8 +2,8 @@
 
 namespace Orkhanahmadov\Goldenpay\Exceptions;
 
-use RuntimeException;
+use Exception;
 
-class GoldenpayPaymentKeyException extends RuntimeException
+class GoldenpayPaymentKeyException extends Exception
 {
 }

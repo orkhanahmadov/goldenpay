@@ -8,8 +8,13 @@ class FunctionsTest extends TestCase
 {
     public function test_goldenpay_method()
     {
-        $this->assertEquals('custom_auth_key', goldenpay()->authKey);
-        $this->assertEquals('custom_merchant_name', goldenpay()->merchantName);
+        $goldenpay = goldenpay();
+        $this->assertEquals('custom_auth_key', $goldenpay->authKey);
+        $this->assertEquals('custom_merchant_name', $goldenpay->merchantName);
+
+        $goldenpay = goldenpay('another_auth_key', 'another_merchant_name');
+        $this->assertEquals('another_auth_key', $goldenpay->authKey);
+        $this->assertEquals('another_merchant_name', $goldenpay->merchantName);
     }
 
     protected function getEnvironmentSetUp($app)

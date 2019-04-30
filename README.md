@@ -1,4 +1,4 @@
-## [GoldenPay](http://www.goldenpay.az) library for PHP and Laravel framework
+## :credit_card: [GoldenPay](http://www.goldenpay.az) library for PHP and Laravel framework
 
 [![Build Status](https://travis-ci.org/orkhanahmadov/goldenpay.svg?branch=master)](https://travis-ci.org/orkhanahmadov/goldenpay)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/test_coverage)](https://codeclimate.com/github/orkhanahmadov/goldenpay/test_coverage)
@@ -10,7 +10,7 @@
 
 ``composer require orkhanahmadov/goldenpay``
 
-### Usage
+### General usage
 
 First, instantiate ``Orkhanahmadov\Goldenpay\GoldenpayService`` with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
 
@@ -56,12 +56,34 @@ Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentResult``. You ca
 $paymentResult->paymentKey; // Orkhanahmadov\Goldenpay\PaymentKey instance with payment key and payment url
 $paymentResult->merchantName; // merchant name
 $paymentResult->amount; // charged amount in integer. 100 = 1.00
-$paymentResult->checkCount; // how many times this payment key result checked
+$paymentResult->checkCount; // shows how many times this payment key result checked
 $paymentResult->paymentDate; // payment date in Y-m-d H:m:i format. Example: 2019-04-30 14:16:58
 $paymentResult->cardNumber; // charged card number. only first 6 digits and last 4 digits. Example: 422865******8101
 $paymentResult->language; // 2 letter interface language
 $paymentResult->description; // payment description
 $paymentResult->rrn; // payment reference number
+```
+
+### Laravel usage
+
+Set ``GOLDENPAY_AUTH_KEY`` and ``GOLDENPAY_MERCHANT_NAME`` variables in ``.env`` file:
+
+```bash
+GOLDENPAY_AUTH_KEY=your_auth_key
+GOLDENPAY_MERCHANT_NAME=your_merchant_name
+```
+
+To publish package config files, run:
+
+```bash
+php artisan vendor:publish --provider="Orkhanahmadov\Goldenpay\Laravel\ServiceProvider"
+```
+
+You can use Laravel helper method to get new payment key or check payment result:
+
+```php
+goldenpay()->newPaymentKey(100, 'v', 'description', 'lv');
+goldenpay()->checkPaymentResult('payment-key-here');
 ```
 
 ### License
