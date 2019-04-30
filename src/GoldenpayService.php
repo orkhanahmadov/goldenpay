@@ -5,16 +5,16 @@ namespace Orkhanahmadov\Goldenpay;
 use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 
-class Goldenpay
+class GoldenpayService
 {
     /**
      * @var string
      */
-    private $authKey;
+    public $authKey;
     /**
      * @var string
      */
-    private $merchantName;
+    public $merchantName;
     /**
      * @var Client
      */

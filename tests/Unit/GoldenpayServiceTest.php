@@ -5,15 +5,15 @@ namespace Orkhanahmadov\Goldenpay\Tests\Unit;
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
-use Orkhanahmadov\Goldenpay\Goldenpay;
+use Orkhanahmadov\Goldenpay\GoldenpayService;
 use Orkhanahmadov\Goldenpay\Tests\TestCase;
 
-class GoldenpayTest extends TestCase
+class GoldenpayServiceTest extends TestCase
 {
     use UsesGuzzler;
 
     /**
-     * @var Goldenpay
+     * @var GoldenpayService
      */
     private $goldenpay;
 
@@ -21,7 +21,11 @@ class GoldenpayTest extends TestCase
     {
         parent::setUp();
 
-        $this->goldenpay = new Goldenpay('valid_auth_key', 'valid_merchant_name', $this->guzzler->getClient());
+        $this->goldenpay = new GoldenpayService(
+            'valid_auth_key',
+            'valid_merchant_name',
+            $this->guzzler->getClient()
+        );
     }
 
     public function test_newPaymentKey_method_returns_new_payment_key()

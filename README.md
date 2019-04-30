@@ -1,4 +1,4 @@
-## [GoldenPay](http://www.goldenpay.az) library for PHP
+## [GoldenPay](http://www.goldenpay.az) library for PHP and Laravel framework
 
 [![Build Status](https://travis-ci.org/orkhanahmadov/goldenpay.svg?branch=master)](https://travis-ci.org/orkhanahmadov/goldenpay)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/test_coverage)](https://codeclimate.com/github/orkhanahmadov/goldenpay/test_coverage)
@@ -12,12 +12,12 @@
 
 ### Usage
 
-First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` object with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
+First, instantiate ``Orkhanahmadov\Goldenpay\GoldenpayService`` with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
 
 ```php
-use Orkhanahmadov\Goldenpay\Goldenpay;
+use Orkhanahmadov\Goldenpay\GoldenpayService;
 
-$goldenpay = new Goldenpay('auth-key-here', 'merchant-name-here');
+$goldenpay = new GoldenpayService('auth-key-here', 'merchant-name-here');
 ```
 
 #### Getting payment key
@@ -63,3 +63,9 @@ $paymentResult->language; // 2 letter interface language
 $paymentResult->description; // payment description
 $paymentResult->rrn; // payment reference number
 ```
+
+### License
+MIT
+
+### Contributions
+PRs are welcome :blush:

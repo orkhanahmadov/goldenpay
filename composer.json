@@ -15,12 +15,16 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "blastcloud/guzzler": "^1.4"
+        "blastcloud/guzzler": "^1.4",
+        "orchestra/testbench": "^3.8"
     },
     "autoload": {
         "psr-4": {
             "Orkhanahmadov\\Goldenpay\\": "src/"
-        }
+        },
+        "files": [
+            "src/Laravel/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -33,5 +37,12 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orkhanahmadov\\Goldenpay\\Laravel\\ServiceProvider"
+            ]
+        }
     }
 }
