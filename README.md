@@ -12,29 +12,32 @@
 
 ### Usage
 
-#### Getting payment key
-To get new payment key use ``newPaymentKey`` method.
-
-Method requires following arguments:
-* **Auth key** - Get this from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/)
-* **Merchant name** - Get this from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/)
-* **Amount** - Amount to charge. No decimals, only integer accepted. For example 10.25 needs to be converted to 1025
-* **Card type** - Use 'v' for VISA, 'm' for MasterCard
-* **Description** - Payment related description
-* (optional) Language - Sets payment page interface language. 'en' for azerbaijani, 'ru' for russian, 'lv' for azerbaijani. Default is 'lv'
+First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` object with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
 
 ```php
 use Orkhanahmadov\Goldenpay\Goldenpay;
 
-$goldenpay = new Goldenpay();
-$paymentKey = $goldenpay->newPaymentKey('auth_key', 'merchant_name', 100, 'v', 'description', 'lv');
+$goldenpay = new Goldenpay('auth key here', 'merchant name here');
+```
+
+#### Getting payment key
+To get new payment key use ``newPaymentKey`` method.
+
+Method accepts following arguments:
+* **Amount** - Amount to charge. No decimals, only integer accepted. For example 10.25 needs to be converted to 1025
+* **Card type** - Use 'v' for VISA, 'm' for MasterCard
+* **Description** - Payment related description
+* **Language** *(optional)* - Sets payment page interface language. 'en' for azerbaijani, 'ru' for russian, 'lv' for azerbaijani. Default is 'lv'
+
+```php
+$paymentKey = $goldenpay->newPaymentKey(100, 'v', 'description', 'lv');
 ```
 
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentKey``. You can access payment key and payment url from this object instance.
 
 ```php
-$paymentKey->paymentKey; // returns fetched payment key
-$paymentKey->paymentUrl(); // returns full payment url
+$paymentKey->paymentKey; // fetched payment key
+$paymentKey->paymentUrl(); // full payment url
 ```
 
 #### Checking payment result

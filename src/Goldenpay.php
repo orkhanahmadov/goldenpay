@@ -8,6 +8,14 @@ use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 class Goldenpay
 {
     /**
+     * @var string
+     */
+    private $authKey;
+    /**
+     * @var string
+     */
+    private $merchantName;
+    /**
      * @var Client
      */
     private $client;
@@ -15,18 +23,20 @@ class Goldenpay
     /**
      * Goldenpay constructor.
      *
+     * @param string $authKey
+     * @param string $merchantName
      * @param Client|null $client
      */
-    public function __construct(Client $client = null)
+    public function __construct(string $authKey, string $merchantName, Client $client = null)
     {
+        $this->authKey = $authKey;
+        $this->merchantName = $merchantName;
         $this->client = $client ?: new Client();
     }
 
     /**
-     * Get new payment key from Goldenpay endpoint.
+     * Gets new payment key.
      *
-     * @param string $authKey
-     * @param string $merchantName
      * @param int    $amount
      * @param string $cardType
      * @param string $description
@@ -34,21 +44,16 @@ class Goldenpay
      *
      * @return PaymentKey
      */
-    public function newPaymentKey(string $authKey, string $merchantName, int $amount, string $cardType, string $description, string $lang = 'lv')
+    public function newPaymentKey(int $amount, string $cardType, string $description, string $lang = 'lv')
     {
-        $response = $this->client->post('https://rest.goldenpay.az/web/service/merchant/getPaymentKey', [
-            'headers' => ['Accept' => 'application/json'],
-            'json'    => [
-                'merchantName' => $merchantName,
-                'amount'       => $amount,
-                'cardType'     => $cardType,
-                'description'  => $description,
-                'lang'         => $lang,
-                'hashCode'     => md5($authKey.$merchantName.$cardType.$amount.$description),
-            ],
+        $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentKey', [
+            'merchantName' => $this->merchantName,
+            'amount'       => $amount,
+            'cardType'     => $cardType,
+            'description'  => $description,
+            'lang'         => $lang,
+            'hashCode'     => md5($this->authKey.$this->merchantName.$cardType.$amount.$description),
         ]);
-
-        $result = json_decode($response->getBody()->getContents(), true);
 
         if ($result['status']['code'] !== 1) {
             throw new GoldenpayPaymentKeyException($result['status']['message']);
@@ -58,7 +63,7 @@ class Goldenpay
     }
 
     /**
-     * Checks result from Goldenpay endpoint.
+     * Checks payment result.
      *
      * @param string $authKey
      * @param string $paymentKey
@@ -67,16 +72,28 @@ class Goldenpay
      */
     public function checkPaymentResult(string $authKey, string $paymentKey)
     {
-        $response = $this->client->post('https://rest.goldenpay.az/web/service/merchant/getPaymentResult', [
-            'headers' => ['Accept' => 'application/json'],
-            'json'    => [
-                'payment_key' => $paymentKey,
-                'Hash_code'   => md5($authKey.$paymentKey),
-            ],
+        $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentResult', [
+            'payment_key' => $paymentKey,
+            'Hash_code'   => md5($authKey.$paymentKey),
         ]);
 
-        $result = json_decode($response->getBody()->getContents(), true);
-
         return new PaymentResult($result);
+    }
+
+    /**
+     * Sends requests to GoldenPay endpoint.
+     *
+     * @param string $url
+     * @param array $json
+     * @return array
+     */
+    private function sendRequest(string $url, array $json)
+    {
+        $response = $this->client->post($url, [
+            'headers' => ['Accept' => 'application/json'],
+            'json'    => $json,
+        ]);
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 }

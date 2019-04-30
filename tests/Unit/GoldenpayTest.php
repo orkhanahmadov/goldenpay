@@ -21,7 +21,7 @@ class GoldenpayTest extends TestCase
     {
         parent::setUp();
 
-        $this->goldenpay = new Goldenpay($this->guzzler->getClient());
+        $this->goldenpay = new Goldenpay('valid_auth_key', 'valid_merchant_name', $this->guzzler->getClient());
     }
 
     public function test_newPaymentKey_method_returns_new_payment_key()
@@ -32,8 +32,6 @@ class GoldenpayTest extends TestCase
             ->willRespond(new Response(200, [], '{"status":{"code":1,"message":"success"},"paymentKey":"1234-5678"}'));
 
         $paymentKey = $this->goldenpay->newPaymentKey(
-            'valid_auth_key',
-            'valid_merchant_name',
             100,
             'v',
             'test description'
@@ -56,8 +54,6 @@ class GoldenpayTest extends TestCase
         $this->expectExceptionMessage('some error message here');
 
         $this->goldenpay->newPaymentKey(
-            'invalid_auth_key',
-            'invalid_merchant_name',
             100,
             'v',
             'invalid description'
