@@ -37,13 +37,14 @@ class GoldenpayService
     /**
      * Gets new payment key.
      *
-     * @param int $amount
+     * @param int    $amount
      * @param string $cardType
      * @param string $description
      * @param string $lang
      *
-     * @return PaymentKey
      * @throws GoldenpayPaymentKeyException
+     *
+     * @return PaymentKey
      */
     public function newPaymentKey(int $amount, string $cardType, string $description, string $lang = 'lv')
     {
