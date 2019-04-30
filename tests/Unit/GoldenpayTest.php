@@ -11,7 +11,7 @@ use Orkhanahmadov\Goldenpay\Tests\TestCase;
 
 class GoldenpayTest extends TestCase
 {
-    use RefreshDatabase, UsesGuzzler;
+    use UsesGuzzler;
 
     /**
      * @var Goldenpay

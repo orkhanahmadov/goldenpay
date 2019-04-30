@@ -27,5 +27,12 @@
         "psr-4": {
             "Orkhanahmadov\\Goldenpay\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orkhanahmadov\\Goldenpay\\LaravelServiceProvider"
+            ]
+        }
     }
 }

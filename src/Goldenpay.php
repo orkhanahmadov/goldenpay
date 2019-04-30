@@ -49,8 +49,9 @@ class Goldenpay
 
         $result = json_decode($response->getBody()->getContents(), true);
 
-        if ($result['status']['code'] !== 1)
+        if ($result['status']['code'] !== 1) {
             throw new GoldenpayPaymentKeyException($result['status']['message']);
+        }
 
         return new PaymentKey($result['status']['code'], $result['status']['message'], $result['paymentKey']);
     }
