@@ -8,7 +8,9 @@
 
 ### Installation
 
-``composer require orkhanahmadov/goldenpay``
+```bash
+composer require orkhanahmadov/goldenpay
+```
 
 ### General usage
 
@@ -88,7 +90,7 @@ Goldenpay::newPaymentKey(100, 'v', 'your-description', 'lv');
 Goldenpay::checkPaymentResult('payment-key-here');
 ```
 
-You can also use Laravel helper method:
+You can also use helper method:
 
 ```php
 goldenpay()->newPaymentKey(100, 'v', 'your-description', 'lv');
