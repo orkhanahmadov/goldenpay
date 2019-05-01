@@ -58,7 +58,7 @@ class Goldenpay
         ]);
 
         if ($result['status']['code'] !== 1) {
-            throw new GoldenpayPaymentKeyException($result['status']['message']);
+            throw new GoldenpayPaymentKeyException($result['status']['message'].'. Code: '.$result['status']['code']);
         }
 
         return new PaymentKey($result['status']['code'], $result['status']['message'], $result['paymentKey']);

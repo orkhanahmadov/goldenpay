@@ -8,7 +8,7 @@ use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use Orkhanahmadov\Goldenpay\Goldenpay;
 use Orkhanahmadov\Goldenpay\Tests\TestCase;
 
-class GoldenpayServiceTest extends TestCase
+class GoldenpayTest extends TestCase
 {
     use UsesGuzzler;
 
@@ -41,9 +41,9 @@ class GoldenpayServiceTest extends TestCase
             'test description'
         );
 
-        $this->assertNotNull($paymentKey->paymentKey);
         $this->assertEquals(1, $paymentKey->code);
         $this->assertEquals('success', $paymentKey->message);
+        $this->assertEquals('1234-5678', $paymentKey->paymentKey);
         $this->assertEquals('https://rest.goldenpay.az/web/paypage?payment_key=1234-5678', $paymentKey->paymentUrl());
     }
 
@@ -52,10 +52,10 @@ class GoldenpayServiceTest extends TestCase
         $this->guzzler
             ->expects($this->once())
             ->post('https://rest.goldenpay.az/web/service/merchant/getPaymentKey')
-            ->willRespond(new Response(200, [], '{"status":{"code":801,"message":"some error message here"},"paymentKey":null}'));
+            ->willRespond(new Response(200, [], '{"status":{"code":801,"message":"Error message here"},"paymentKey":null}'));
 
         $this->expectException(GoldenpayPaymentKeyException::class);
-        $this->expectExceptionMessage('some error message here');
+        $this->expectExceptionMessage('Error message here. Code: 801');
 
         $this->goldenpay->newPaymentKey(
             100,

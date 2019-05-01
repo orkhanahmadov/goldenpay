@@ -20,7 +20,7 @@
 composer require orkhanahmadov/goldenpay
 ```
 
-### General usage
+### Usage
 
 First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
 
@@ -34,27 +34,31 @@ $goldenpay = new Goldenpay('auth-key-here', 'merchant-name-here');
 To get new payment key use ``newPaymentKey`` method.
 
 Method accepts following arguments:
-* **Amount** - Amount to charge. No decimals, only integer accepted. For example 10.25 needs to be converted to 1025
+* **Amount** - Amount to charge. Only integer accepted. For example 10.25 needs to be converted to 1025
 * **Card type** - Use 'v' for VISA, 'm' for MasterCard
 * **Description** - Payment related description
-* **Language** *(optional)* - Sets payment page interface language. 'en' for azerbaijani, 'ru' for russian, 'lv' for azerbaijani. Default is 'lv'
+* **Language** *(optional)* - Sets payment page interface language. 'en' for english, 'ru' for russian, 'lv' for azerbaijani. Default is 'lv'
 
 ```php
-$paymentKey = $goldenpay->newPaymentKey(100, 'v', 'your-description', 'lv');
+$paymentKey = $goldenpay->newPaymentKey(100, 'v', 'your-description', 'en');
 ```
 
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentKey``. You can access payment key and payment url from this object instance.
 
 ```php
-$paymentKey->paymentKey; // fetched payment key
-$paymentKey->paymentUrl(); // full payment url
+$paymentKey->code; // endpoint response code
+$paymentKey->message; // endpoint response message
+$paymentKey->paymentKey; // unique payment key
+$paymentKey->paymentUrl(); // payment url. you can redirect user to this url to start payment
 ```
+
+**Important!** Goldenpay charges all payments only in AZN.
 
 #### Checking payment result
 To check payment result use ``checkPaymentResult`` method.
 
 Method accepts following arguments:
-* **Payment key** - Payment key previously fetched with ``newPaymentKey`` method.
+* **Payment key** - Previously available payment key
 
 ```php
 $paymentResult = $goldenpay->checkPaymentResult('payment-key-here');
@@ -89,23 +93,23 @@ Publish package config files:
 php artisan vendor:publish --provider="Orkhanahmadov\Goldenpay\Laravel\ServiceProvider"
 ```
 
-You can use package's Laravel facade to get new payment key or check payment result:
+You can use Laravel facade to get new payment key or check payment result:
 
 ```php
-use Orkhanahmadov\Goldenpay\Laravel\Facades\Goldenpay;
+use Goldenpay;
 
 Goldenpay::newPaymentKey(100, 'v', 'your-description', 'lv');
 Goldenpay::checkPaymentResult('payment-key-here');
 ```
 
-You can also use helper method:
+You can also use helper function:
 
 ```php
 goldenpay()->newPaymentKey(100, 'v', 'your-description', 'lv');
 goldenpay()->checkPaymentResult('payment-key-here');
 
-// you can also ignore .env variables and pass 'auth_key' and 'merchant_name' to helper method
-goldenpay('auth-key-here', 'merchant-name-here')->newPaymentKey(100, 'v', 'your-description', 'lv');
+// you can also ignore .env variables and pass 'auth_key' and 'merchant_name' to helper function
+goldenpay('auth-key-here', 'merchant-name-here')->newPaymentKey(100, 'v', 'your-description', 'en');
 goldenpay('auth-key-here', 'merchant-name-here')->checkPaymentResult('payment-key-here');
 ```
 
@@ -123,4 +127,4 @@ Please see [CHANGELOG](https://github.com/orkhanahmadov/goldenpay/blob/master/CH
 Please see [CONTRIBUTING](https://github.com/orkhanahmadov/goldenpay/blob/master/CONTRIBUTING.md) for details.
 
 ### License
-The MIT License (MIT). Please see [License File](https://github.com/orkhanahmadov/goldenpay/blob/master/LICENSE.md) for more information.
+The MIT License (MIT). Please see [License file](https://github.com/orkhanahmadov/goldenpay/blob/master/LICENSE.md) for more information.
