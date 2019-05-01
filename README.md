@@ -1,10 +1,13 @@
 ## :credit_card: [GoldenPay](http://www.goldenpay.az) library for PHP and Laravel framework
 
+[![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/stable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 [![Build Status](https://travis-ci.org/orkhanahmadov/goldenpay.svg?branch=master)](https://travis-ci.org/orkhanahmadov/goldenpay)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/test_coverage)](https://codeclimate.com/github/orkhanahmadov/goldenpay/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/maintainability)](https://codeclimate.com/github/orkhanahmadov/goldenpay/maintainability)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/orkhanahmadov/goldenpay/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/orkhanahmadov/goldenpay/?branch=master)
 [![StyleCI](https://github.styleci.io/repos/184265600/shield?branch=master)](https://github.styleci.io/repos/184265600)
+[![Total Downloads](https://poser.pugx.org/orkhanahmadov/goldenpay/downloads)](https://packagist.org/packages/orkhanahmadov/goldenpay)
+[![License](https://poser.pugx.org/orkhanahmadov/goldenpay/license)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 
 ### Installation
 

@@ -8,11 +8,11 @@ use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 class Goldenpay
 {
     /**
-     * @var string
+     * @var string|null
      */
     public $authKey;
     /**
-     * @var string
+     * @var string|null
      */
     public $merchantName;
     /**
@@ -27,7 +27,7 @@ class Goldenpay
      * @param string      $merchantName
      * @param Client|null $client
      */
-    public function __construct(string $authKey, string $merchantName, Client $client = null)
+    public function __construct($authKey, $merchantName, Client $client = null)
     {
         $this->authKey = $authKey;
         $this->merchantName = $merchantName;
