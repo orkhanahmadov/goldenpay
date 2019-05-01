@@ -10,6 +10,10 @@
 [![Total Downloads](https://poser.pugx.org/orkhanahmadov/goldenpay/downloads)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 [![License](https://poser.pugx.org/orkhanahmadov/goldenpay/license)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 
+### Requirements
+
+**PHP 7.2** or higher.
+
 ### Installation
 
 ```bash
