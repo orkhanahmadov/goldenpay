@@ -1,6 +1,6 @@
 <?php
 
-use Orkhanahmadov\Goldenpay\GoldenpayService;
+use Orkhanahmadov\Goldenpay\Goldenpay;
 
 if (!function_exists('goldenpay')) {
     /**
@@ -9,14 +9,14 @@ if (!function_exists('goldenpay')) {
      * @param string|null $authKey
      * @param string|null $merchantName
      *
-     * @return GoldenpayService
+     * @return Goldenpay
      */
     function goldenpay(string $authKey = null, string $merchantName = null)
     {
         if ($authKey && $merchantName) {
-            return new GoldenpayService($authKey, $merchantName);
+            return new Goldenpay($authKey, $merchantName);
         }
 
-        return new GoldenpayService(config('goldenpay.auth_key'), config('goldenpay.merchant_name'));
+        return new Goldenpay(config('goldenpay.auth_key'), config('goldenpay.merchant_name'));
     }
 }

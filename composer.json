@@ -42,7 +42,10 @@
         "laravel": {
             "providers": [
                 "Orkhanahmadov\\Goldenpay\\Laravel\\ServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Goldenpay": "Orkhanahmadov\\Goldenpay\\Laravel\\Facades\\Goldenpay"
+            }
         }
     }
 }

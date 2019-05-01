@@ -5,7 +5,7 @@ namespace Orkhanahmadov\Goldenpay;
 use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 
-class GoldenpayService
+class Goldenpay
 {
     /**
      * @var string

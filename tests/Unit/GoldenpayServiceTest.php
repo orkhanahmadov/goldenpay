@@ -5,7 +5,7 @@ namespace Orkhanahmadov\Goldenpay\Tests\Unit;
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
-use Orkhanahmadov\Goldenpay\GoldenpayService;
+use Orkhanahmadov\Goldenpay\Goldenpay;
 use Orkhanahmadov\Goldenpay\Tests\TestCase;
 
 class GoldenpayServiceTest extends TestCase
@@ -13,7 +13,7 @@ class GoldenpayServiceTest extends TestCase
     use UsesGuzzler;
 
     /**
-     * @var GoldenpayService
+     * @var Goldenpay
      */
     private $goldenpay;
 
@@ -21,7 +21,7 @@ class GoldenpayServiceTest extends TestCase
     {
         parent::setUp();
 
-        $this->goldenpay = new GoldenpayService(
+        $this->goldenpay = new Goldenpay(
             'valid_auth_key',
             'valid_merchant_name',
             $this->guzzler->getClient()
