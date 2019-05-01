@@ -21,11 +21,8 @@ class GoldenpayTest extends TestCase
     {
         parent::setUp();
 
-        $this->goldenpay = new Goldenpay(
-            'valid_auth_key',
-            'valid_merchant_name',
-            $this->guzzler->getClient()
-        );
+        $this->goldenpay = new Goldenpay('valid_auth_key', 'valid_merchant_name');
+        $this->goldenpay->setClient($this->guzzler->getClient());
     }
 
     public function test_newPaymentKey_method_returns_new_payment_key()

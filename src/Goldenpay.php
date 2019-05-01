@@ -23,15 +23,14 @@ class Goldenpay
     /**
      * Goldenpay constructor.
      *
-     * @param string      $authKey
-     * @param string      $merchantName
-     * @param Client|null $client
+     * @param string $authKey
+     * @param string $merchantName
      */
-    public function __construct($authKey, $merchantName, Client $client = null)
+    public function __construct($authKey, $merchantName)
     {
         $this->authKey = $authKey;
         $this->merchantName = $merchantName;
-        $this->client = $client ?: new Client();
+        $this->client = new Client();
     }
 
     /**
@@ -97,5 +96,13 @@ class Goldenpay
         ]);
 
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * @param Client $client
+     */
+    public function setClient(Client $client): void
+    {
+        $this->client = $client;
     }
 }
