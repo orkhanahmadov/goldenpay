@@ -4,7 +4,7 @@ use Orkhanahmadov\Goldenpay\Goldenpay;
 
 if (!function_exists('goldenpay')) {
     /**
-     * Helper method for Laravel.
+     * Global helper function.
      *
      * @param string|null $authKey
      * @param string|null $merchantName

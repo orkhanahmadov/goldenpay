@@ -23,7 +23,7 @@
             "Orkhanahmadov\\Goldenpay\\": "src/"
         },
         "files": [
-            "src/Laravel/functions.php"
+            "src/functions.php"
         ]
     },
     "autoload-dev": {

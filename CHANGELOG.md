@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.0.4
+- Changed global function load directory
+
 ### 1.0.3
 - DI change within Goldenpay service
 
