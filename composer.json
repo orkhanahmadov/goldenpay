@@ -1,6 +1,6 @@
 {
     "name": "orkhanahmadov/goldenpay",
-    "description": "GoldenPay payment library for PHP and Laravel framework.",
+    "description": "GoldenPay payment library for PHP and Laravel framework",
     "type": "library",
     "license": "MIT",
     "authors": [

@@ -78,6 +78,13 @@ $paymentResult->description; // description used for payment
 $paymentResult->rrn; // payment reference number
 ```
 
+You can also use helper function:
+
+```php
+goldenpay('auth-key-here', 'merchant-name-here')->newPaymentKey(100, 'v', 'your-description', 'en');
+goldenpay('auth-key-here', 'merchant-name-here')->checkPaymentResult('payment-key-here');
+```
+
 ### Laravel usage
 
 Set ``GOLDENPAY_AUTH_KEY`` and ``GOLDENPAY_MERCHANT_NAME`` variables in ``.env`` file:
@@ -102,15 +109,11 @@ Goldenpay::newPaymentKey(100, 'v', 'your-description', 'lv');
 Goldenpay::checkPaymentResult('payment-key-here');
 ```
 
-You can also use helper function:
+Since you set up auth key and merchant name in ``.env`` file you can use use helper function without passing those:
 
 ```php
 goldenpay()->newPaymentKey(100, 'v', 'your-description', 'lv');
 goldenpay()->checkPaymentResult('payment-key-here');
-
-// you can also ignore .env variables and pass 'auth_key' and 'merchant_name' to helper function
-goldenpay('auth-key-here', 'merchant-name-here')->newPaymentKey(100, 'v', 'your-description', 'en');
-goldenpay('auth-key-here', 'merchant-name-here')->checkPaymentResult('payment-key-here');
 ```
 
 ### Testing
