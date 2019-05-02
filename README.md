@@ -85,6 +85,8 @@ goldenpay('auth-key-here', 'merchant-name-here')->newPaymentKey(100, 'v', 'your-
 goldenpay('auth-key-here', 'merchant-name-here')->checkPaymentResult('payment-key-here');
 ```
 
+``Orkhanahmadov\Goldenpay\Goldenpay`` class implements ``Orkhanahmadov\Goldenpay\GoldenpayInterface``. In applications you can use this interface as abstraction for dependency injection.
+
 ### Laravel usage
 
 Set ``GOLDENPAY_AUTH_KEY`` and ``GOLDENPAY_MERCHANT_NAME`` variables in ``.env`` file:

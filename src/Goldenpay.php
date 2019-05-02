@@ -5,7 +5,7 @@ namespace Orkhanahmadov\Goldenpay;
 use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 
-class Goldenpay
+class Goldenpay implements GoldenpayInterface
 {
     /**
      * @var string|null
@@ -45,7 +45,7 @@ class Goldenpay
      *
      * @return PaymentKey
      */
-    public function newPaymentKey(int $amount, string $cardType, string $description, string $lang = 'lv')
+    public function newPaymentKey(int $amount, string $cardType, string $description, string $lang = 'lv'): PaymentKey
     {
         $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentKey', [
             'merchantName' => $this->merchantName,
@@ -70,7 +70,7 @@ class Goldenpay
      *
      * @return PaymentResult
      */
-    public function checkPaymentResult(string $paymentKey)
+    public function checkPaymentResult(string $paymentKey): PaymentResult
     {
         $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentResult', [
             'payment_key' => $paymentKey,

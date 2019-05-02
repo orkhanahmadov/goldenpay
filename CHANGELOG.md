@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.1.0
+- GoldenpayInterface added for better dependency abstraction in applications
+
 ### 1.0.4
 - Changed global function load directory
 
