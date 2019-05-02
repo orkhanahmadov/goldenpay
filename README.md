@@ -109,7 +109,7 @@ Goldenpay::newPaymentKey(100, 'v', 'your-description', 'lv');
 Goldenpay::checkPaymentResult('payment-key-here');
 ```
 
-Since you set up auth key and merchant name in ``.env`` file you can use use helper function without passing those:
+Since you set up ``GOLDENPAY_AUTH_KEY`` and ``GOLDENPAY_MERCHANT_NAME`` in ``.env`` file, you can use helper function without passing those:
 
 ```php
 goldenpay()->newPaymentKey(100, 'v', 'your-description', 'lv');
