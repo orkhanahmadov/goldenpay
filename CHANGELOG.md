@@ -1,5 +1,10 @@
 ## Changelog
 
+All notable changes to `goldenpay` will be documented in this file
+
+### 1.2.0 - 2019-07-30
+- Dependency requirements lowered
+
 ### 1.1.0
 - GoldenpayInterface added for better dependency abstraction
 

@@ -1,26 +1,28 @@
-## :credit_card: [GoldenPay](http://www.goldenpay.az) library for PHP and Laravel framework
-
-[![Build Status](https://travis-ci.org/orkhanahmadov/goldenpay.svg?branch=master)](https://travis-ci.org/orkhanahmadov/goldenpay)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/test_coverage)](https://codeclimate.com/github/orkhanahmadov/goldenpay/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/maintainability)](https://codeclimate.com/github/orkhanahmadov/goldenpay/maintainability)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/orkhanahmadov/goldenpay/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/orkhanahmadov/goldenpay/?branch=master)
-[![StyleCI](https://github.styleci.io/repos/184265600/shield?branch=master)](https://github.styleci.io/repos/184265600)
+# :credit_card: [GoldenPay](http://www.goldenpay.az) library for PHP and Laravel framework
 
 [![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/stable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
-[![Total Downloads](https://poser.pugx.org/orkhanahmadov/goldenpay/downloads)](https://packagist.org/packages/orkhanahmadov/goldenpay)
-[![License](https://poser.pugx.org/orkhanahmadov/goldenpay/license)](https://packagist.org/packages/orkhanahmadov/goldenpay)
+[![Latest Unstable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/unstable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
+[![GitHub license](https://img.shields.io/github/license/orkhanahmadov/goldenpay.svg)](https://github.com/orkhanahmadov/goldenpay/blob/master/LICENSE.md)
 
-### Requirements
+[![Build Status](https://img.shields.io/travis/orkhanahmadov/goldenpay.svg)](https://travis-ci.org/orkhanahmadov/goldenpay)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/orkhanahmadov/goldenpay.svg)](https://codeclimate.com/github/orkhanahmadov/goldenpay/test_coverage)
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/orkhanahmadov/goldenpay.svg)](https://codeclimate.com/github/orkhanahmadov/goldenpay/maintainability)
+[![Quality Score](https://img.shields.io/scrutinizer/g/orkhanahmadov/goldenpay.svg)](https://scrutinizer-ci.com/g/orkhanahmadov/goldenpay)
+[![StyleCI](https://github.styleci.io/repos/184265600/shield?branch=master)](https://github.styleci.io/repos/184265600)
 
-**PHP 7.2** or higher, ``json`` extension.
+## Requirements
 
-### Installation
+**PHP 7.1** or higher, ``json`` extension.
+
+If you use Laravel - **version 5.5 or higher**
+
+## Installation
 
 ```bash
 composer require orkhanahmadov/goldenpay
 ```
 
-### Usage
+## Usage
 
 First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
 
@@ -30,7 +32,7 @@ use Orkhanahmadov\Goldenpay\Goldenpay;
 $goldenpay = new Goldenpay('auth-key-here', 'merchant-name-here');
 ```
 
-#### Getting payment key
+### Getting payment key
 To get new payment key use ``newPaymentKey`` method.
 
 Method accepts following arguments:
@@ -54,7 +56,7 @@ $paymentKey->paymentUrl(); // payment url. you can redirect user to this url to 
 
 **Important!** Goldenpay charges all payments only in AZN.
 
-#### Checking payment result
+### Checking payment result
 To check payment result use ``checkPaymentResult`` method.
 
 Method accepts following arguments:
@@ -118,18 +120,29 @@ goldenpay()->newPaymentKey(100, 'v', 'your-description', 'lv');
 goldenpay()->checkPaymentResult('payment-key-here');
 ```
 
-### Testing
-You can run the tests with:
+## Testing
 
-```bash
-vendor/bin/phpunit
+``` bash
+composer test
 ```
 
-### Changelog
-Please see [CHANGELOG](https://github.com/orkhanahmadov/goldenpay/blob/master/CHANGELOG.md) for more information what has changed recently.
+## Changelog
 
-### Contributing
-Please see [CONTRIBUTING](https://github.com/orkhanahmadov/goldenpay/blob/master/CONTRIBUTING.md) for details.
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
-### License
-The MIT License (MIT). Please see [License file](https://github.com/orkhanahmadov/goldenpay/blob/master/LICENSE.md) for more information.
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email ahmadov90@gmail.com instead of using the issue tracker.
+
+## Credits
+
+- [Orkhan Ahmadov](https://github.com/orkhanahmadov)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
