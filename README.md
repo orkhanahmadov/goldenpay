@@ -2,11 +2,12 @@
 
 [![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/stable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 [![Latest Unstable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/unstable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
+[![Total Downloads](https://img.shields.io/packagist/dt/orkhanahmadov/goldenpay)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 [![GitHub license](https://img.shields.io/github/license/orkhanahmadov/goldenpay.svg)](https://github.com/orkhanahmadov/goldenpay/blob/master/LICENSE.md)
 
 [![Build Status](https://img.shields.io/travis/orkhanahmadov/goldenpay.svg)](https://travis-ci.org/orkhanahmadov/goldenpay)
-[![Test Coverage](https://img.shields.io/codeclimate/coverage/orkhanahmadov/goldenpay.svg)](https://codeclimate.com/github/orkhanahmadov/goldenpay/test_coverage)
-[![Maintainability](https://img.shields.io/codeclimate/maintainability/orkhanahmadov/goldenpay.svg)](https://codeclimate.com/github/orkhanahmadov/goldenpay/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/test_coverage)](https://codeclimate.com/github/orkhanahmadov/goldenpay/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/92b05e08792d8c204cf6/maintainability)](https://codeclimate.com/github/orkhanahmadov/goldenpay/maintainability)
 [![Quality Score](https://img.shields.io/scrutinizer/g/orkhanahmadov/goldenpay.svg)](https://scrutinizer-ci.com/g/orkhanahmadov/goldenpay)
 [![StyleCI](https://github.styleci.io/repos/184265600/shield?branch=master)](https://github.styleci.io/repos/184265600)
 
