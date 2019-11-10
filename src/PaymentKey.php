@@ -16,7 +16,6 @@ class PaymentKey
      * @var string|null
      */
     public $paymentKey;
-
     /**
      * PaymentKey constructor.
      *

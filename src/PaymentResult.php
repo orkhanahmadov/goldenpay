@@ -48,7 +48,11 @@ class PaymentResult
      */
     public function __construct(array $paymentResult)
     {
-        $this->paymentKey = new PaymentKey($paymentResult['status']['code'], $paymentResult['status']['message'], $paymentResult['paymentKey']);
+        $this->paymentKey = new PaymentKey(
+            $paymentResult['status']['code'],
+            $paymentResult['status']['message'],
+            $paymentResult['paymentKey']
+        );
         $this->merchantName = $paymentResult['merchantName'];
         $this->amount = $paymentResult['amount'];
         $this->checkCount = $paymentResult['checkCount'];

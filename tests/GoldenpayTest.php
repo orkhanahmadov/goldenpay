@@ -1,12 +1,11 @@
 <?php
 
-namespace Orkhanahmadov\Goldenpay\Tests\Unit;
+namespace Orkhanahmadov\Goldenpay\Tests;
 
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use Orkhanahmadov\Goldenpay\Goldenpay;
-use Orkhanahmadov\Goldenpay\Tests\TestCase;
 
 class GoldenpayTest extends TestCase
 {
@@ -25,7 +24,7 @@ class GoldenpayTest extends TestCase
         $this->goldenpay->setClient($this->guzzler->getClient());
     }
 
-    public function test_newPaymentKey_method_returns_new_payment_key()
+    public function testNewPaymentKeyMethodReturnsNewPaymentKey()
     {
         $this->guzzler
             ->expects($this->once())
@@ -44,7 +43,7 @@ class GoldenpayTest extends TestCase
         $this->assertEquals('https://rest.goldenpay.az/web/paypage?payment_key=1234-5678', $paymentKey->paymentUrl());
     }
 
-    public function test_newPaymentKey_throws_exception_if_invalid_credentials_given()
+    public function testNewPaymentKeyThrowsExceptionIfInvalidCredentialsGiven()
     {
         $this->guzzler
             ->expects($this->once())
@@ -61,7 +60,7 @@ class GoldenpayTest extends TestCase
         );
     }
 
-    public function test_checkPaymentResult_method_returns_payment_information()
+    public function testCheckPaymentResultMethodReturnsPaymentInformation()
     {
         $this->guzzler
             ->expects($this->once())
