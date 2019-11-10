@@ -4,15 +4,16 @@ namespace Orkhanahmadov\Goldenpay;
 
 use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
+use function GuzzleHttp\json_decode;
 
 class Goldenpay implements GoldenpayInterface
 {
     /**
-     * @var string|null
+     * @var string
      */
     public $authKey;
     /**
-     * @var string|null
+     * @var string
      */
     public $merchantName;
     /**
@@ -30,7 +31,10 @@ class Goldenpay implements GoldenpayInterface
     {
         $this->authKey = $authKey;
         $this->merchantName = $merchantName;
-        $this->client = new Client();
+
+        $this->client = new Client([
+            'base_uri' => 'https://rest.goldenpay.az/web/service/merchant/',
+        ]);
     }
 
     /**
@@ -47,7 +51,7 @@ class Goldenpay implements GoldenpayInterface
      */
     public function newPaymentKey(int $amount, string $cardType, string $description, string $lang = 'lv'): PaymentKey
     {
-        $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentKey', [
+        $result = $this->request('getPaymentKey', [
             'merchantName' => $this->merchantName,
             'amount'       => $amount,
             'cardType'     => $cardType,
@@ -72,7 +76,7 @@ class Goldenpay implements GoldenpayInterface
      */
     public function checkPaymentResult(string $paymentKey): PaymentResult
     {
-        $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentResult', [
+        $result = $this->request('getPaymentResult', [
             'payment_key' => $paymentKey,
             'Hash_code'   => md5($this->authKey.$paymentKey),
         ]);
@@ -83,26 +87,18 @@ class Goldenpay implements GoldenpayInterface
     /**
      * Sends requests to GoldenPay endpoint.
      *
-     * @param string $url
+     * @param string $endpoint
      * @param array  $json
      *
      * @return array
      */
-    private function sendRequest(string $url, array $json)
+    private function request(string $endpoint, array $json)
     {
-        $response = $this->client->post($url, [
+        $response = $this->client->post($endpoint, [
             'headers' => ['Accept' => 'application/json'],
             'json'    => $json,
         ]);
 
         return json_decode($response->getBody()->getContents(), true);
-    }
-
-    /**
-     * @param Client $client
-     */
-    public function setClient(Client $client): void
-    {
-        $this->client = $client;
     }
 }

@@ -5,31 +5,17 @@ namespace Orkhanahmadov\Goldenpay\Tests;
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
-use Orkhanahmadov\Goldenpay\Goldenpay;
 
 class GoldenpayTest extends TestCase
 {
     use UsesGuzzler;
 
-    /**
-     * @var Goldenpay
-     */
-    private $goldenpay;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->goldenpay = new Goldenpay('valid_auth_key', 'valid_merchant_name');
-        $this->goldenpay->setClient($this->guzzler->getClient());
-    }
-
     public function testNewPaymentKeyMethodReturnsNewPaymentKey()
     {
         $this->guzzler
             ->expects($this->once())
-            ->post('https://rest.goldenpay.az/web/service/merchant/getPaymentKey')
-            ->willRespond(new Response(200, [], '{"status":{"code":1,"message":"success"},"paymentKey":"1234-5678"}'));
+            ->post(self::API_BASE_URL . 'getPaymentKey')
+            ->willRespond(new Response(200, [], $this->jsonFixture('payment_key')));
 
         $paymentKey = $this->goldenpay->newPaymentKey(
             100,
@@ -48,7 +34,7 @@ class GoldenpayTest extends TestCase
         $this->guzzler
             ->expects($this->once())
             ->post('https://rest.goldenpay.az/web/service/merchant/getPaymentKey')
-            ->willRespond(new Response(200, [], '{"status":{"code":801,"message":"Error message here"},"paymentKey":null}'));
+            ->willRespond(new Response(200, [], $this->jsonFixture('payment_key_error')));
 
         $this->expectException(GoldenpayPaymentKeyException::class);
         $this->expectExceptionMessage('Error message here. Code: 801');
@@ -64,8 +50,8 @@ class GoldenpayTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->post('https://rest.goldenpay.az/web/service/merchant/getPaymentResult')
-            ->willRespond(new Response(200, [], '{"status":{"code":1,"message":"success"},"paymentKey":"1234-5678","merchantName":"valid_merchant_name","amount":100,"checkCount":1,"paymentDate":"2019-04-30 14:16:58","cardNumber":"422865******8101","language":"lv","description":"test desc","rrn":"12345678"}'));
+            ->post(self::API_BASE_URL . 'getPaymentResult')
+            ->willRespond(new Response(200, [], $this->jsonFixture('successful_payment')));
 
         $result = $this->goldenpay->checkPaymentResult('valid_payment_key');
 

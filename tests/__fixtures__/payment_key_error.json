@@ -1,0 +1,7 @@
+{
+    "status": {
+        "code": 801,
+        "message": "Error message here"
+    },
+    "paymentKey": null
+}
