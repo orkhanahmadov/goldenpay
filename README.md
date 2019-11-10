@@ -1,4 +1,4 @@
-# :credit_card: [GoldenPay](http://www.goldenpay.az) library for PHP and Laravel framework
+# :credit_card: [GoldenPay](http://www.goldenpay.az) library for PHP
 
 [![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/stable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 [![Latest Unstable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/unstable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
@@ -13,9 +13,7 @@
 
 ## Requirements
 
-**PHP 7.1** or higher, ``json`` extension.
-
-If you use Laravel - **version 5.5 or higher**
+**PHP 7.2** or higher, with ``json`` extension.
 
 ## Installation
 
@@ -89,37 +87,6 @@ goldenpay('auth-key-here', 'merchant-name-here')->checkPaymentResult('payment-ke
 ```
 
 ``Orkhanahmadov\Goldenpay\Goldenpay`` implements ``Orkhanahmadov\Goldenpay\GoldenpayInterface``. You can use this interface as abstraction for dependency injection.
-
-### Laravel usage
-
-Set ``GOLDENPAY_AUTH_KEY`` and ``GOLDENPAY_MERCHANT_NAME`` variables in ``.env`` file:
-
-```bash
-GOLDENPAY_AUTH_KEY=your_auth_key
-GOLDENPAY_MERCHANT_NAME=your_merchant_name
-```
-
-Publish package config files:
-
-```bash
-php artisan vendor:publish --provider="Orkhanahmadov\Goldenpay\Laravel\ServiceProvider"
-```
-
-You can use Laravel facade to get new payment key or check payment result:
-
-```php
-use Goldenpay;
-
-Goldenpay::newPaymentKey(100, 'v', 'your-description', 'lv');
-Goldenpay::checkPaymentResult('payment-key-here');
-```
-
-Since you set up ``GOLDENPAY_AUTH_KEY`` and ``GOLDENPAY_MERCHANT_NAME`` in ``.env`` file, you can use helper function without passing those:
-
-```php
-goldenpay()->newPaymentKey(100, 'v', 'your-description', 'lv');
-goldenpay()->checkPaymentResult('payment-key-here');
-```
 
 ## Testing
 

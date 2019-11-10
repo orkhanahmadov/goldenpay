@@ -2,6 +2,11 @@
 
 All notable changes to `goldenpay` will be documented in this file
 
+### 2.0.0 - 2019-10-10
+- Laravel related functionality removed.
+Use [laravel-goldenpay](https://github.com/orkhanahmadov/laravel-goldenpay) package for full-feature Laravel integration.
+- PHP 7.1 support removed due to EOL.
+
 ### 1.2.0 - 2019-07-30
 - Dependency requirements lowered
 
