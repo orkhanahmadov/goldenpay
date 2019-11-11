@@ -32,7 +32,7 @@ $goldenpay = new Goldenpay('auth-key-here', 'merchant-name-here');
 ```
 
 ### Getting payment key
-To get new payment key use ``newPaymentKey`` method.
+To get new payment key use ``paymentKey`` method.
 
 Method accepts following arguments:
 * **Amount** - Amount to charge. Only integer accepted. For example 10.25 needs to be converted to 1025
@@ -41,7 +41,7 @@ Method accepts following arguments:
 * **Language** *(optional)* - Sets payment page interface language. 'en' for english, 'ru' for russian, 'lv' for azerbaijani. Default is 'lv'
 
 ```php
-$paymentKey = $goldenpay->newPaymentKey(100, 'v', 'your-description', 'en');
+$paymentKey = $goldenpay->paymentKey(100, 'v', 'your-description', 'en');
 ```
 
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentKey``. You can access payment key and payment url from this object instance.
@@ -56,13 +56,13 @@ $paymentKey->paymentUrl(); // payment url. you can redirect user to this url to 
 **Important!** Goldenpay charges all payments only in AZN.
 
 ### Checking payment result
-To check payment result use ``checkPaymentResult`` method.
+To check payment result use ``paymentResult`` method.
 
 Method accepts following arguments:
 * **Payment key** - Previously available payment key
 
 ```php
-$paymentResult = $goldenpay->checkPaymentResult('payment-key-here');
+$paymentResult = $goldenpay->paymentResult('payment-key-here');
 ```
 
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentResult``. You can access following properties from this object instance:
@@ -82,8 +82,8 @@ $paymentResult->getRrn(); // payment reference number
 You can also use helper function:
 
 ```php
-goldenpay('auth-key-here', 'merchant-name-here')->newPaymentKey(100, 'v', 'your-description', 'en');
-goldenpay('auth-key-here', 'merchant-name-here')->checkPaymentResult('payment-key-here');
+goldenpay('auth-key-here', 'merchant-name-here')->paymentKey(100, 'v', 'your-description', 'en');
+goldenpay('auth-key-here', 'merchant-name-here')->paymentResult('payment-key-here');
 ```
 
 ``Orkhanahmadov\Goldenpay\Goldenpay`` implements ``Orkhanahmadov\Goldenpay\GoldenpayInterface``. You can use this interface as abstraction for dependency injection.

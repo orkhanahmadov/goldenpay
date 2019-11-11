@@ -49,7 +49,7 @@ class Goldenpay implements GoldenpayInterface
      *
      * @return PaymentKey
      */
-    public function newPaymentKey(int $amount, string $cardType, string $description, string $lang = 'lv'): PaymentKey
+    public function paymentKey(int $amount, string $cardType, string $description, string $lang = 'lv'): PaymentKey
     {
         $result = $this->request('getPaymentKey', [
             'merchantName' => $this->merchantName,
@@ -74,7 +74,7 @@ class Goldenpay implements GoldenpayInterface
      *
      * @return PaymentResult
      */
-    public function checkPaymentResult(string $paymentKey): PaymentResult
+    public function paymentResult(string $paymentKey): PaymentResult
     {
         $result = $this->request('getPaymentResult', [
             'payment_key' => $paymentKey,
