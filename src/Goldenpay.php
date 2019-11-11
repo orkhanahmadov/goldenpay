@@ -38,9 +38,9 @@ class Goldenpay implements GoldenpayInterface
     }
 
     /**
-     * Gets new payment key.
+     * Generates new payment key.
      *
-     * @param int    $amount
+     * @param int $amount
      * @param string $cardType
      * @param string $description
      * @param string $lang
@@ -68,17 +68,19 @@ class Goldenpay implements GoldenpayInterface
     }
 
     /**
-     * Checks payment result.
+     * Checks result of payment using existing payment key.
      *
-     * @param string $paymentKey
+     * @param PaymentKey|string $paymentKey
      *
      * @return PaymentResult
      */
-    public function paymentResult(string $paymentKey): PaymentResult
+    public function paymentResult($paymentKey): PaymentResult
     {
+        $key = $paymentKey instanceof PaymentKey ? $paymentKey->getKey() : $paymentKey;
+
         $result = $this->request('getPaymentResult', [
-            'payment_key' => $paymentKey,
-            'Hash_code'   => md5($this->authKey.$paymentKey),
+            'payment_key' => $key,
+            'Hash_code'   => md5($this->authKey.$key),
         ]);
 
         return new PaymentResult($result);

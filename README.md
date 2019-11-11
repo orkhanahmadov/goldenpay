@@ -65,6 +65,8 @@ Method accepts following arguments:
 $paymentResult = $goldenpay->paymentResult('payment-key-here');
 ```
 
+Method also accepts instance of ``Orkhanahmadov\Goldenpay\PaymentKey`` as an argument.
+
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentResult``. You can access following properties from this object instance:
 
 ```php
