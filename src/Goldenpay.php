@@ -102,16 +102,23 @@ class Goldenpay implements PaymentInterface
      * Sends requests to GoldenPay endpoint.
      *
      * @param string $endpoint
-     * @param array  $json
+     * @param array  $data
      *
      * @return array
      */
-    private function request(string $endpoint, array $json)
+    private function request(string $endpoint, array $data)
     {
-        $response = $this->client->post($endpoint, [
-            'headers' => ['Accept' => 'application/json'],
-            'json'    => $json,
-        ]);
+        if ($endpoint === 'getPaymentResult') {
+            $response = $this->client->get($endpoint, [
+                'headers' => ['Accept' => 'application/json'],
+                'query'   => $data,
+            ]);
+        } else {
+            $response = $this->client->post($endpoint, [
+                'headers' => ['Accept' => 'application/json', 'Content-Type' => 'application/json'],
+                'json'    => $data,
+            ]);
+        }
 
         return json_decode($response->getBody()->getContents(), true);
     }

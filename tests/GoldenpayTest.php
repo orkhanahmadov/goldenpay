@@ -54,7 +54,7 @@ class GoldenpayTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->post(self::API_BASE_URL . 'getPaymentResult')
+            ->get(self::API_BASE_URL . 'getPaymentResult')
             ->willRespond(new Response(200, [], $this->jsonFixture('successful_payment')));
 
         $result = $this->goldenpay->paymentResult('valid_payment_key');
@@ -77,7 +77,7 @@ class GoldenpayTest extends TestCase
     {
         $this->guzzler
             ->expects($this->once())
-            ->post(self::API_BASE_URL . 'getPaymentResult')
+            ->get(self::API_BASE_URL . 'getPaymentResult')
             ->willRespond(new Response(200, [], $this->jsonFixture('successful_payment')));
         $paymentKey = new PaymentKey(1, 'whatever', 'valid_payment_key');
 
