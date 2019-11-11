@@ -37,12 +37,14 @@ To get new payment key use ``paymentKey`` method.
 
 Method accepts following arguments:
 * **Amount** - Amount to charge. Only integer accepted. For example 10.25 needs to be converted to 1025
-* **Card type** - Use 'v' for VISA, 'm' for MasterCard
+* **Card type** - Requires instance of `Orkhanahmadov\Goldenpay\Enums\CardType`.
+`CardType::VISA()` for VISA, `CardType::MASTERCARD()` for MasterCard
 * **Description** - Payment related description
-* **Language** *(optional)* - Sets payment page interface language. 'en' for english, 'ru' for russian, 'lv' for azerbaijani. Default is 'lv'
+* **Language** *(optional)* - Sets payment page interface language. Requires instance of `Orkhanahmadov\Goldenpay\Enums\Language`.
+`Language::EN()` for english, `Language::RU()` for russian, `Language::AZ()` for azerbaijani. Default is azerbaijani
 
 ```php
-$paymentKey = $goldenpay->paymentKey(100, 'v', 'your-description', 'en');
+$paymentKey = $goldenpay->paymentKey(100, CardType::VISA(), 'item-description', Language::EN());
 ```
 
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentKey``. You can access payment key and payment url from this object instance.

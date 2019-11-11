@@ -4,6 +4,8 @@ namespace Orkhanahmadov\Goldenpay\Tests;
 
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
+use Orkhanahmadov\Goldenpay\Enums\CardType;
+use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use Orkhanahmadov\Goldenpay\PaymentKey;
 
@@ -20,8 +22,9 @@ class GoldenpayTest extends TestCase
 
         $paymentKey = $this->goldenpay->paymentKey(
             100,
-            'v',
-            'test description'
+            CardType::VISA(),
+            'test description',
+            Language::AZ()
         );
 
         $this->assertEquals(1, $paymentKey->getCode());
@@ -42,7 +45,7 @@ class GoldenpayTest extends TestCase
 
         $this->goldenpay->paymentKey(
             100,
-            'v',
+            CardType::VISA(),
             'invalid description'
         );
     }

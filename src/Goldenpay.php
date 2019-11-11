@@ -3,6 +3,8 @@
 namespace Orkhanahmadov\Goldenpay;
 
 use GuzzleHttp\Client;
+use Orkhanahmadov\Goldenpay\Enums\CardType;
+use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use function GuzzleHttp\json_decode;
 
@@ -51,23 +53,23 @@ class Goldenpay implements PaymentInterface
      * Generates new payment key.
      *
      * @param int $amount
-     * @param string $cardType
+     * @param CardType $cardType
      * @param string $description
-     * @param string $lang
+     * @param Language $lang
      *
      * @throws GoldenpayPaymentKeyException
      *
      * @return PaymentKey
      */
-    public function paymentKey(int $amount, string $cardType, string $description, string $lang = 'lv'): PaymentKey
+    public function paymentKey(int $amount, CardType $cardType, string $description, ?Language $lang = null): PaymentKey
     {
         $result = $this->request('getPaymentKey', [
             'merchantName' => $this->merchantName,
             'amount'       => $amount,
-            'cardType'     => $cardType,
+            'cardType'     => $cardType->getValue(),
             'description'  => $description,
-            'lang'         => $lang,
-            'hashCode'     => md5($this->authKey.$this->merchantName.$cardType.$amount.$description),
+            'lang'         => $lang ? $lang->getValue() : 'lv',
+            'hashCode'     => md5($this->authKey.$this->merchantName.$cardType->getValue().$amount.$description),
         ]);
 
         if ($result['status']['code'] !== 1) {

@@ -2,6 +2,9 @@
 
 namespace Orkhanahmadov\Goldenpay;
 
+use Orkhanahmadov\Goldenpay\Enums\CardType;
+use Orkhanahmadov\Goldenpay\Enums\Language;
+
 interface PaymentInterface
 {
     /**
@@ -18,13 +21,13 @@ interface PaymentInterface
      * Generates new payment key.
      *
      * @param int $amount
-     * @param string $cardType
+     * @param CardType $cardType
      * @param string $description
-     * @param string $lang
+     * @param Language $lang
      *
      * @return PaymentKey
      */
-    public function paymentKey(int $amount, string $cardType, string $description, string $lang): PaymentKey;
+    public function paymentKey(int $amount, CardType $cardType, string $description, ?Language $lang): PaymentKey;
 
     /**
      * Checks result of payment using existing payment key.
