@@ -11,7 +11,7 @@ class FunctionsTest extends TestCase
         $instance = goldenpay('valid_key', 'valid_merchant');
 
         $this->assertInstanceOf(Goldenpay::class, $instance);
-        $this->assertSame('valid_key', $instance->authKey);
-        $this->assertSame('valid_merchant', $instance->merchantName);
+        $this->assertSame('valid_key', $instance->getAuthKey());
+        $this->assertSame('valid_merchant', $instance->getMerchantName());
     }
 }

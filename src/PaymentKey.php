@@ -7,31 +7,58 @@ class PaymentKey
     /**
      * @var int
      */
-    public $code;
+    private $code;
     /**
      * @var string
      */
-    public $message;
+    private $message;
     /**
      * @var string|null
      */
-    public $paymentKey;
+    private $key;
     /**
      * PaymentKey constructor.
      *
      * @param int         $code
      * @param string      $message
-     * @param string|null $paymentKey
+     * @param string|null $key
      */
-    public function __construct(int $code, string $message, ?string $paymentKey)
+    public function __construct(int $code, string $message, ?string $key)
     {
         $this->code = $code;
         $this->message = $message;
-        $this->paymentKey = $paymentKey;
+        $this->key = $key;
     }
 
+    /**
+     * @return string
+     */
     public function paymentUrl(): string
     {
-        return 'https://rest.goldenpay.az/web/paypage?payment_key='.$this->paymentKey;
+        return 'https://rest.goldenpay.az/web/paypage?payment_key='.$this->key;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCode(): int
+    {
+        return $this->code;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getKey(): ?string
+    {
+        return $this->key;
     }
 }

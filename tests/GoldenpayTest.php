@@ -23,9 +23,9 @@ class GoldenpayTest extends TestCase
             'test description'
         );
 
-        $this->assertEquals(1, $paymentKey->code);
-        $this->assertEquals('success', $paymentKey->message);
-        $this->assertEquals('1234-5678', $paymentKey->paymentKey);
+        $this->assertEquals(1, $paymentKey->getCode());
+        $this->assertEquals('success', $paymentKey->getMessage());
+        $this->assertEquals('1234-5678', $paymentKey->getKey());
         $this->assertEquals('https://rest.goldenpay.az/web/paypage?payment_key=1234-5678', $paymentKey->paymentUrl());
     }
 
@@ -55,16 +55,17 @@ class GoldenpayTest extends TestCase
 
         $result = $this->goldenpay->checkPaymentResult('valid_payment_key');
 
-        $this->assertEquals(1, $result->paymentKey->code);
-        $this->assertEquals('success', $result->paymentKey->message);
-        $this->assertEquals('1234-5678', $result->paymentKey->paymentKey);
-        $this->assertEquals('valid_merchant_name', $result->merchantName);
-        $this->assertEquals(100, $result->amount);
-        $this->assertEquals(1, $result->checkCount);
-        $this->assertEquals('2019-04-30 14:16:58', $result->paymentDate);
-        $this->assertEquals('422865******8101', $result->cardNumber);
-        $this->assertEquals('lv', $result->language);
-        $this->assertEquals('test desc', $result->description);
-        $this->assertEquals('12345678', $result->rrn);
+        $this->assertEquals(1, $result->getPaymentKey()->getCode());
+        $this->assertEquals('success', $result->getPaymentKey()->getMessage());
+        $this->assertEquals('1234-5678', $result->getPaymentKey()->getKey());
+        $this->assertEquals('valid_merchant_name', $result->getMerchantName());
+        $this->assertEquals(100, $result->getAmount());
+        $this->assertEquals(1, $result->getCheckCount());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $result->getPaymentDate());
+        $this->assertEquals('2019-04-30 14:16:58', $result->getPaymentDate()->format('2019-04-30 14:16:58'));
+        $this->assertEquals('422865******8101', $result->getCardNumber());
+        $this->assertEquals('lv', $result->getLanguage());
+        $this->assertEquals('test desc', $result->getDescription());
+        $this->assertEquals('12345678', $result->getRrn());
     }
 }

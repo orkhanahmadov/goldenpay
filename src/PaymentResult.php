@@ -7,39 +7,39 @@ class PaymentResult
     /**
      * @var PaymentKey
      */
-    public $paymentKey;
+    private $paymentKey;
     /**
      * @var string
      */
-    public $merchantName;
+    private $merchantName;
     /**
      * @var int
      */
-    public $amount;
+    private $amount;
     /**
      * @var int
      */
-    public $checkCount;
+    private $checkCount;
+    /**
+     * @var \DateTimeImmutable
+     */
+    private $paymentDate;
     /**
      * @var string
      */
-    public $paymentDate;
+    private $cardNumber;
     /**
      * @var string
      */
-    public $cardNumber;
+    private $language;
     /**
      * @var string
      */
-    public $language;
+    private $description;
     /**
      * @var string
      */
-    public $description;
-    /**
-     * @var string
-     */
-    public $rrn;
+    private $rrn;
 
     /**
      * PaymentResult constructor.
@@ -56,10 +56,82 @@ class PaymentResult
         $this->merchantName = $paymentResult['merchantName'];
         $this->amount = $paymentResult['amount'];
         $this->checkCount = $paymentResult['checkCount'];
-        $this->paymentDate = $paymentResult['paymentDate'];
+        $this->paymentDate = new \DateTimeImmutable($paymentResult['paymentDate']);
         $this->cardNumber = $paymentResult['cardNumber'];
         $this->language = $paymentResult['language'];
         $this->description = $paymentResult['description'];
         $this->rrn = $paymentResult['rrn'];
+    }
+
+    /**
+     * @return PaymentKey
+     */
+    public function getPaymentKey(): PaymentKey
+    {
+        return $this->paymentKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantName(): string
+    {
+        return $this->merchantName;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCheckCount(): int
+    {
+        return $this->checkCount;
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getPaymentDate(): \DateTimeImmutable
+    {
+        return $this->paymentDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCardNumber(): string
+    {
+        return $this->cardNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage(): string
+    {
+        return $this->language;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRrn(): string
+    {
+        return $this->rrn;
     }
 }

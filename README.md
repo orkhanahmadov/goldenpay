@@ -47,9 +47,9 @@ $paymentKey = $goldenpay->newPaymentKey(100, 'v', 'your-description', 'en');
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentKey``. You can access payment key and payment url from this object instance.
 
 ```php
-$paymentKey->code; // endpoint response code
-$paymentKey->message; // endpoint response message
-$paymentKey->paymentKey; // unique payment key
+$paymentKey->getCode(); // endpoint response code
+$paymentKey->getMessage(); // endpoint response message
+$paymentKey->getKey(); // unique payment key
 $paymentKey->paymentUrl(); // payment url. you can redirect user to this url to start payment
 ```
 
@@ -68,15 +68,15 @@ $paymentResult = $goldenpay->checkPaymentResult('payment-key-here');
 Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentResult``. You can access following properties from this object instance:
 
 ```php
-$paymentResult->paymentKey; // Orkhanahmadov\Goldenpay\PaymentKey instance
-$paymentResult->merchantName; // merchant name
-$paymentResult->amount; // charged amount in integer. 100 = 1.00
-$paymentResult->checkCount; // shows how many times this payment key result checked
-$paymentResult->paymentDate; // payment date in Y-m-d H:m:i format. Example: 2019-04-30 14:16:58
-$paymentResult->cardNumber; // charged card number. only first 6 digits and last 4 digits. Example: 422865******8101
-$paymentResult->language; // 2 letter interface language: 'lv', 'en' or 'ru'
-$paymentResult->description; // description used for payment
-$paymentResult->rrn; // payment reference number
+$paymentResult->getPaymentKey(); // Orkhanahmadov\Goldenpay\PaymentKey instance
+$paymentResult->getMerchantName(); // merchant name
+$paymentResult->getAmount(); // charged amount in integer format. 100 = 1.00
+$paymentResult->getCheckCount(); // shows how many times this payment key result checked
+$paymentResult->getPaymentDate(); // \DateTimeImmutable instance of payment date
+$paymentResult->getCardNumber(); // charged card number. only first 6 digits and last 4 digits. Example: 422865******8101
+$paymentResult->getLanguage(); // 2 letter interface language: 'lv', 'en' or 'ru'
+$paymentResult->getDescription(); // description used for payment
+$paymentResult->getRrn(); // payment reference number
 ```
 
 You can also use helper function:

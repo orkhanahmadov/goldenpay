@@ -11,11 +11,11 @@ class Goldenpay implements GoldenpayInterface
     /**
      * @var string
      */
-    public $authKey;
+    private $authKey;
     /**
      * @var string
      */
-    public $merchantName;
+    private $merchantName;
     /**
      * @var Client
      */
@@ -100,5 +100,21 @@ class Goldenpay implements GoldenpayInterface
         ]);
 
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthKey(): string
+    {
+        return $this->authKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMerchantName(): string
+    {
+        return $this->merchantName;
     }
 }
