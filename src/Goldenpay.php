@@ -6,6 +6,8 @@ use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Enums\CardType;
 use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
+use Orkhanahmadov\Goldenpay\Response\PaymentKey;
+use Orkhanahmadov\Goldenpay\Response\PaymentResult;
 use function GuzzleHttp\json_decode;
 
 class Goldenpay implements PaymentInterface

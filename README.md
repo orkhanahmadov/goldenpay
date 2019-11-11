@@ -47,7 +47,7 @@ Method accepts following arguments:
 $paymentKey = $goldenpay->paymentKey(100, CardType::VISA(), 'item-description', Language::EN());
 ```
 
-Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentKey``. You can access payment key and payment url from this object instance.
+Method will return instance of ``Orkhanahmadov\Goldenpay\Response\PaymentKey``. You can access payment key and payment url from this object instance.
 
 ```php
 $paymentKey->getCode(); // endpoint response code
@@ -68,12 +68,12 @@ Method accepts following arguments:
 $paymentResult = $goldenpay->paymentResult('payment-key-here');
 ```
 
-Method also accepts instance of ``Orkhanahmadov\Goldenpay\PaymentKey`` as an argument.
+Method also accepts instance of ``Orkhanahmadov\Goldenpay\Response\PaymentKey`` as an argument.
 
-Method will return instance of ``Orkhanahmadov\Goldenpay\PaymentResult``. You can access following properties from this object instance:
+Method will return instance of ``Orkhanahmadov\Goldenpay\Response\PaymentResult``. You can access following properties from this object instance:
 
 ```php
-$paymentResult->getPaymentKey(); // Orkhanahmadov\Goldenpay\PaymentKey instance
+$paymentResult->getPaymentKey(); // Orkhanahmadov\Goldenpay\Response\PaymentKey instance
 $paymentResult->getMerchantName(); // merchant name
 $paymentResult->getAmount(); // charged amount in integer format. 100 = 1.00
 $paymentResult->getCheckCount(); // shows how many times this payment key result checked

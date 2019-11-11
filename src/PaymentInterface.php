@@ -4,6 +4,8 @@ namespace Orkhanahmadov\Goldenpay;
 
 use Orkhanahmadov\Goldenpay\Enums\CardType;
 use Orkhanahmadov\Goldenpay\Enums\Language;
+use Orkhanahmadov\Goldenpay\Response\PaymentKey;
+use Orkhanahmadov\Goldenpay\Response\PaymentResult;
 
 interface PaymentInterface
 {

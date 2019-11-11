@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Goldenpay\Enums\CardType;
 use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
-use Orkhanahmadov\Goldenpay\PaymentKey;
+use Orkhanahmadov\Goldenpay\Response\PaymentKey;
 
 class GoldenpayTest extends TestCase
 {

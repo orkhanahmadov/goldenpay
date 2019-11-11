@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkhanahmadov\Goldenpay;
+namespace Orkhanahmadov\Goldenpay\Response;
 
 class PaymentResult
 {
