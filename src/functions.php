@@ -13,6 +13,6 @@ if (!function_exists('goldenpay')) {
      */
     function goldenpay(string $authKey, string $merchantName)
     {
-        return new Goldenpay($authKey, $merchantName);
+        return (new Goldenpay())->auth($authKey, $merchantName);
     }
 }

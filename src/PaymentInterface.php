@@ -2,8 +2,18 @@
 
 namespace Orkhanahmadov\Goldenpay;
 
-interface GoldenpayInterface
+interface PaymentInterface
 {
+    /**
+     * Sets Goldenpay authentication credentials.
+     *
+     * @param string $authKey
+     * @param string $merchantName
+     *
+     * @return self
+     */
+    public function auth(string $authKey, string $merchantName): self;
+
     /**
      * Generates new payment key.
      *
@@ -14,7 +24,7 @@ interface GoldenpayInterface
      *
      * @return PaymentKey
      */
-    public function paymentKey(int $amount, string $cardType, string $description, string $lang = 'lv'): PaymentKey;
+    public function paymentKey(int $amount, string $cardType, string $description, string $lang): PaymentKey;
 
     /**
      * Checks result of payment using existing payment key.

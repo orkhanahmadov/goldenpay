@@ -6,16 +6,16 @@ use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use function GuzzleHttp\json_decode;
 
-class Goldenpay implements GoldenpayInterface
+class Goldenpay implements PaymentInterface
 {
     /**
-     * @var string
+     * @var string|null
      */
-    private $authKey;
+    private $authKey = null;
     /**
-     * @var string
+     * @var string|null
      */
-    private $merchantName;
+    private $merchantName = null;
     /**
      * @var Client
      */
@@ -23,18 +23,28 @@ class Goldenpay implements GoldenpayInterface
 
     /**
      * Goldenpay constructor.
+     */
+    public function __construct()
+    {
+        $this->client = new Client([
+            'base_uri' => 'https://rest.goldenpay.az/web/service/merchant/',
+        ]);
+    }
+
+    /**
+     * Sets Goldenpay authentication credentials.
      *
      * @param string $authKey
      * @param string $merchantName
+     *
+     * @return self
      */
-    public function __construct($authKey, $merchantName)
+    public function auth(string $authKey, string $merchantName): PaymentInterface
     {
         $this->authKey = $authKey;
         $this->merchantName = $merchantName;
 
-        $this->client = new Client([
-            'base_uri' => 'https://rest.goldenpay.az/web/service/merchant/',
-        ]);
+        return $this;
     }
 
     /**
@@ -105,17 +115,17 @@ class Goldenpay implements GoldenpayInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAuthKey(): string
+    public function getAuthKey(): ?string
     {
         return $this->authKey;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMerchantName(): string
+    public function getMerchantName(): ?string
     {
         return $this->merchantName;
     }

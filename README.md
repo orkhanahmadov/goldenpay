@@ -23,12 +23,13 @@ composer require orkhanahmadov/goldenpay
 
 ## Usage
 
-First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
+First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` and call ``auth()`` method with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
 
 ```php
 use Orkhanahmadov\Goldenpay\Goldenpay;
 
-$goldenpay = new Goldenpay('auth-key-here', 'merchant-name-here');
+$goldenpay = new Goldenpay();
+$goldenpay->auth('auth-key-here', 'merchant-name-here');
 ```
 
 ### Getting payment key
@@ -81,11 +82,11 @@ $paymentResult->getDescription(); // description used for payment
 $paymentResult->getRrn(); // payment reference number
 ```
 
-You can also use helper function:
+You can also use global helper function. Calling this function requires passing "auth key" and "merchant name".
 
 ```php
-goldenpay('auth-key-here', 'merchant-name-here')->paymentKey(100, 'v', 'your-description', 'en');
-goldenpay('auth-key-here', 'merchant-name-here')->paymentResult('payment-key-here');
+$goldenpay = goldenpay('auth-key-here', 'merchant-name-here'); // returns instance of "Orkhanahmadov\Goldenpay\Goldenpay"
+$goldenpay->paymentKey(100, 'v', 'your-description', 'en');
 ```
 
 ``Orkhanahmadov\Goldenpay\Goldenpay`` implements ``Orkhanahmadov\Goldenpay\GoldenpayInterface``. You can use this interface as abstraction for dependency injection.

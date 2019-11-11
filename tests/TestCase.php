@@ -19,7 +19,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
 
-        $this->goldenpay = new Goldenpay('valid_auth_key', 'valid_merchant_name');
+        $this->goldenpay = new Goldenpay();
+        $this->goldenpay->auth('valid_auth_key', 'valid_merchant_name');
 
         $reflection = new \ReflectionClass(Goldenpay::class);
         $reflectionProp = $reflection->getProperty('client');
