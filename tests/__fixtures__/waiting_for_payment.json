@@ -1,0 +1,15 @@
+{
+    "status": {
+        "code": 813,
+        "message": "Waiting for payment"
+    },
+    "paymentKey": "valid-payment-key",
+    "merchantName": "valid-merchant-name",
+    "amount": 100,
+    "checkCount": 1,
+    "paymentDate": "2019-11-11 23:19:59",
+    "language": "lv",
+    "description": "test item",
+    "cardNumber": null,
+    "rrn": null
+}

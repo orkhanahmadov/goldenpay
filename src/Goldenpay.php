@@ -90,11 +90,11 @@ class Goldenpay implements PaymentInterface
      */
     public function paymentResult($paymentKey): PaymentResult
     {
-        $key = $paymentKey instanceof PaymentKey ? $paymentKey->getKey() : $paymentKey;
+        $paymentKey = $paymentKey instanceof PaymentKey ? $paymentKey->getPaymentKey() : $paymentKey;
 
         $result = $this->request('getPaymentResult', [
-            'payment_key' => $key,
-            'hash_code'   => md5($this->authKey.$key),
+            'payment_key' => $paymentKey,
+            'hash_code'   => md5($this->authKey.$paymentKey),
         ]);
 
         return new PaymentResult($result);

@@ -52,7 +52,7 @@ Method will return instance of ``Orkhanahmadov\Goldenpay\Response\PaymentKey``. 
 ```php
 $paymentKey->getCode(); // endpoint response code
 $paymentKey->getMessage(); // endpoint response message
-$paymentKey->getKey(); // unique payment key
+$paymentKey->getPaymentKey(); // unique payment key
 $paymentKey->paymentUrl(); // payment url. you can redirect user to this url to start payment
 ```
 
@@ -73,7 +73,9 @@ Method also accepts instance of ``Orkhanahmadov\Goldenpay\Response\PaymentKey`` 
 Method will return instance of ``Orkhanahmadov\Goldenpay\Response\PaymentResult``. You can access following properties from this object instance:
 
 ```php
-$paymentResult->getPaymentKey(); // Orkhanahmadov\Goldenpay\Response\PaymentKey instance
+$paymentResult->getCode(); // status code
+$paymentResult->getMessage(); // status message
+$paymentResult->getPaymentKey(); // payment key
 $paymentResult->getMerchantName(); // merchant name
 $paymentResult->getAmount(); // charged amount in integer format. 100 = 1.00
 $paymentResult->getCheckCount(); // shows how many times this payment key result checked
@@ -81,7 +83,7 @@ $paymentResult->getPaymentDate(); // \DateTimeImmutable instance of payment date
 $paymentResult->getCardNumber(); // charged card number. only first 6 digits and last 4 digits. Example: 422865******8101
 $paymentResult->getLanguage(); // 2 letter interface language: 'lv', 'en' or 'ru'
 $paymentResult->getDescription(); // description used for payment
-$paymentResult->getRrn(); // payment reference number
+$paymentResult->getReferenceNumber(); // payment reference number
 ```
 
 You can also use global helper function. Calling this function requires passing "auth key" and "merchant name".

@@ -3,8 +3,8 @@
         "code": 1,
         "message": "success"
     },
-    "paymentKey": "1234-5678",
-    "merchantName": "valid_merchant_name",
+    "paymentKey": "valid-payment-key",
+    "merchantName": "valid-merchant-name",
     "amount": 100,
     "checkCount": 1,
     "paymentDate": "2019-04-30 14:16:58",

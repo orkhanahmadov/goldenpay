@@ -2,32 +2,24 @@
 
 namespace Orkhanahmadov\Goldenpay\Response;
 
-class PaymentKey
+class PaymentKey extends Status
 {
-    /**
-     * @var int
-     */
-    private $code;
     /**
      * @var string
      */
-    private $message;
-    /**
-     * @var string|null
-     */
-    private $key;
+    private $paymentKey;
     /**
      * PaymentKey constructor.
      *
-     * @param int         $code
-     * @param string      $message
-     * @param string|null $key
+     * @param int    $code
+     * @param string $message
+     * @param string $paymentKey
      */
-    public function __construct(int $code, string $message, ?string $key)
+    public function __construct(int $code, string $message, string $paymentKey)
     {
         $this->code = $code;
         $this->message = $message;
-        $this->key = $key;
+        $this->paymentKey = $paymentKey;
     }
 
     /**
@@ -35,30 +27,14 @@ class PaymentKey
      */
     public function paymentUrl(): string
     {
-        return 'https://rest.goldenpay.az/web/paypage?payment_key='.$this->key;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCode(): int
-    {
-        return $this->code;
+        return 'https://rest.goldenpay.az/web/paypage?payment_key='.$this->paymentKey;
     }
 
     /**
      * @return string
      */
-    public function getMessage(): string
+    public function getPaymentKey(): string
     {
-        return $this->message;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getKey(): ?string
-    {
-        return $this->key;
+        return $this->paymentKey;
     }
 }

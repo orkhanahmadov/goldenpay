@@ -2,10 +2,10 @@
 
 namespace Orkhanahmadov\Goldenpay\Response;
 
-class PaymentResult
+class PaymentResult extends Status
 {
     /**
-     * @var PaymentKey
+     * @var string
      */
     private $paymentKey;
     /**
@@ -21,13 +21,13 @@ class PaymentResult
      */
     private $checkCount;
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTimeImmutable|null
      */
-    private $paymentDate;
+    private $paymentDate = null;
     /**
-     * @var string
+     * @var string|null
      */
-    private $cardNumber;
+    private $cardNumber = null;
     /**
      * @var string
      */
@@ -37,9 +37,9 @@ class PaymentResult
      */
     private $description;
     /**
-     * @var string
+     * @var string|null
      */
-    private $rrn;
+    private $referenceNumber = null;
 
     /**
      * PaymentResult constructor.
@@ -48,25 +48,26 @@ class PaymentResult
      */
     public function __construct(array $paymentResult)
     {
-        $this->paymentKey = new PaymentKey(
-            $paymentResult['status']['code'],
-            $paymentResult['status']['message'],
-            $paymentResult['paymentKey']
-        );
+        $this->code = $paymentResult['status']['code'];
+        $this->message = $paymentResult['status']['message'];
+        $this->paymentKey = $paymentResult['paymentKey'];
         $this->merchantName = $paymentResult['merchantName'];
         $this->amount = $paymentResult['amount'];
         $this->checkCount = $paymentResult['checkCount'];
-        $this->paymentDate = new \DateTimeImmutable($paymentResult['paymentDate']);
         $this->cardNumber = $paymentResult['cardNumber'];
         $this->language = $paymentResult['language'];
         $this->description = $paymentResult['description'];
-        $this->rrn = $paymentResult['rrn'];
+        $this->referenceNumber = $paymentResult['rrn'];
+
+        if ($paymentResult['paymentDate']) {
+            $this->paymentDate = new \DateTimeImmutable($paymentResult['paymentDate']);
+        }
     }
 
     /**
-     * @return PaymentKey
+     * @return string
      */
-    public function getPaymentKey(): PaymentKey
+    public function getPaymentKey(): string
     {
         return $this->paymentKey;
     }
@@ -96,17 +97,17 @@ class PaymentResult
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return \DateTimeImmutable|null
      */
-    public function getPaymentDate(): \DateTimeImmutable
+    public function getPaymentDate(): ?\DateTimeImmutable
     {
         return $this->paymentDate;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCardNumber(): string
+    public function getCardNumber(): ?string
     {
         return $this->cardNumber;
     }
@@ -128,10 +129,10 @@ class PaymentResult
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRrn(): string
+    public function getReferenceNumber(): ?string
     {
-        return $this->rrn;
+        return $this->referenceNumber;
     }
 }

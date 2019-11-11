@@ -7,7 +7,6 @@ use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Goldenpay\Enums\CardType;
 use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
-use Orkhanahmadov\Goldenpay\Response\PaymentKey;
 
 class GoldenpayTest extends TestCase
 {
@@ -29,7 +28,7 @@ class GoldenpayTest extends TestCase
 
         $this->assertEquals(1, $paymentKey->getCode());
         $this->assertEquals('success', $paymentKey->getMessage());
-        $this->assertEquals('1234-5678', $paymentKey->getKey());
+        $this->assertEquals('1234-5678', $paymentKey->getPaymentKey());
         $this->assertEquals('https://rest.goldenpay.az/web/paypage?payment_key=1234-5678', $paymentKey->paymentUrl());
     }
 
@@ -57,12 +56,12 @@ class GoldenpayTest extends TestCase
             ->get(self::API_BASE_URL . 'getPaymentResult')
             ->willRespond(new Response(200, [], $this->jsonFixture('successful_payment')));
 
-        $result = $this->goldenpay->paymentResult('valid_payment_key');
+        $result = $this->goldenpay->paymentResult('valid-payment-key');
 
-        $this->assertEquals(1, $result->getPaymentKey()->getCode());
-        $this->assertEquals('success', $result->getPaymentKey()->getMessage());
-        $this->assertEquals('1234-5678', $result->getPaymentKey()->getKey());
-        $this->assertEquals('valid_merchant_name', $result->getMerchantName());
+        $this->assertEquals(1, $result->getCode());
+        $this->assertEquals('success', $result->getMessage());
+        $this->assertEquals('valid-payment-key', $result->getPaymentKey());
+        $this->assertEquals('valid-merchant-name', $result->getMerchantName());
         $this->assertEquals(100, $result->getAmount());
         $this->assertEquals(1, $result->getCheckCount());
         $this->assertInstanceOf(\DateTimeImmutable::class, $result->getPaymentDate());
@@ -70,7 +69,7 @@ class GoldenpayTest extends TestCase
         $this->assertEquals('422865******8101', $result->getCardNumber());
         $this->assertEquals('lv', $result->getLanguage());
         $this->assertEquals('test desc', $result->getDescription());
-        $this->assertEquals('12345678', $result->getRrn());
+        $this->assertEquals('12345678', $result->getReferenceNumber());
     }
 
     public function testPaymentResultMethodReturnsPaymentInformationWithPaymentKeyInstance()
@@ -79,14 +78,13 @@ class GoldenpayTest extends TestCase
             ->expects($this->once())
             ->get(self::API_BASE_URL . 'getPaymentResult')
             ->willRespond(new Response(200, [], $this->jsonFixture('successful_payment')));
-        $paymentKey = new PaymentKey(1, 'whatever', 'valid_payment_key');
 
-        $result = $this->goldenpay->paymentResult($paymentKey);
+        $result = $this->goldenpay->paymentResult('valid-payment-key');
 
-        $this->assertEquals(1, $result->getPaymentKey()->getCode());
-        $this->assertEquals('success', $result->getPaymentKey()->getMessage());
-        $this->assertEquals('1234-5678', $result->getPaymentKey()->getKey());
-        $this->assertEquals('valid_merchant_name', $result->getMerchantName());
+        $this->assertEquals(1, $result->getCode());
+        $this->assertEquals('success', $result->getMessage());
+        $this->assertEquals('valid-payment-key', $result->getPaymentKey());
+        $this->assertEquals('valid-merchant-name', $result->getMerchantName());
         $this->assertEquals(100, $result->getAmount());
         $this->assertEquals(1, $result->getCheckCount());
         $this->assertInstanceOf(\DateTimeImmutable::class, $result->getPaymentDate());
@@ -94,6 +92,6 @@ class GoldenpayTest extends TestCase
         $this->assertEquals('422865******8101', $result->getCardNumber());
         $this->assertEquals('lv', $result->getLanguage());
         $this->assertEquals('test desc', $result->getDescription());
-        $this->assertEquals('12345678', $result->getRrn());
+        $this->assertEquals('12345678', $result->getReferenceNumber());
     }
 }

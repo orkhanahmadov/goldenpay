@@ -1,0 +1,15 @@
+{
+    "status": {
+        "code": 813,
+        "message": "Pay page not called"
+    },
+    "paymentKey": "valid-payment-key",
+    "merchantName": "valid-merchant-name",
+    "amount": 100,
+    "checkCount": 0,
+    "paymentDate": null,
+    "language": "lv",
+    "description": "test item",
+    "cardNumber": null,
+    "rrn": null
+}
