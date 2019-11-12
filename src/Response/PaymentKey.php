@@ -2,23 +2,24 @@
 
 namespace Orkhanahmadov\Goldenpay\Response;
 
-class PaymentKey extends Status
+class PaymentKey extends Response
 {
     /**
      * @var string
      */
     private $paymentKey;
+
     /**
      * PaymentKey constructor.
      *
-     * @param int    $code
+     * @param int $code
      * @param string $message
      * @param string $paymentKey
      */
     public function __construct(int $code, string $message, string $paymentKey)
     {
-        $this->code = $code;
-        $this->message = $message;
+        parent::__construct($code, $message);
+
         $this->paymentKey = $paymentKey;
     }
 

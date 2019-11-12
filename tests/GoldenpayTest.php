@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Goldenpay\Enums\CardType;
 use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
+use Orkhanahmadov\Goldenpay\Response\PaymentKey;
 
 class GoldenpayTest extends TestCase
 {
@@ -60,7 +61,8 @@ class GoldenpayTest extends TestCase
 
         $this->assertEquals(1, $result->getCode());
         $this->assertEquals('success', $result->getMessage());
-        $this->assertEquals('valid-payment-key', $result->getPaymentKey());
+        $this->assertInstanceOf(PaymentKey::class, $result->getPaymentKey());
+        $this->assertEquals('valid-payment-key', $result->getPaymentKey()->getPaymentKey());
         $this->assertEquals('valid-merchant-name', $result->getMerchantName());
         $this->assertEquals(100, $result->getAmount());
         $this->assertEquals(1, $result->getCheckCount());
@@ -83,7 +85,8 @@ class GoldenpayTest extends TestCase
 
         $this->assertEquals(1, $result->getCode());
         $this->assertEquals('success', $result->getMessage());
-        $this->assertEquals('valid-payment-key', $result->getPaymentKey());
+        $this->assertInstanceOf(PaymentKey::class, $result->getPaymentKey());
+        $this->assertEquals('valid-payment-key', $result->getPaymentKey()->getPaymentKey());
         $this->assertEquals('valid-merchant-name', $result->getMerchantName());
         $this->assertEquals(100, $result->getAmount());
         $this->assertEquals(1, $result->getCheckCount());

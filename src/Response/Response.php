@@ -2,7 +2,7 @@
 
 namespace Orkhanahmadov\Goldenpay\Response;
 
-abstract class Status
+abstract class Response
 {
     /**
      * @var int
@@ -12,6 +12,18 @@ abstract class Status
      * @var string
      */
     protected $message;
+
+    /**
+     * Response constructor.
+     *
+     * @param int $code
+     * @param string $message
+     */
+    public function __construct(int $code, string $message)
+    {
+        $this->code = $code;
+        $this->message = $message;
+    }
 
     /**
      * @return int

@@ -2,10 +2,10 @@
 
 namespace Orkhanahmadov\Goldenpay\Response;
 
-class PaymentResult extends Status
+class PaymentResult extends Response
 {
     /**
-     * @var string
+     * @var PaymentKey
      */
     private $paymentKey;
     /**
@@ -44,30 +44,32 @@ class PaymentResult extends Status
     /**
      * PaymentResult constructor.
      *
-     * @param array $paymentResult
+     * @param int $code
+     * @param string $message
+     * @param array $data
      */
-    public function __construct(array $paymentResult)
+    public function __construct(int $code, string $message, array $data)
     {
-        $this->code = $paymentResult['status']['code'];
-        $this->message = $paymentResult['status']['message'];
-        $this->paymentKey = $paymentResult['paymentKey'];
-        $this->merchantName = $paymentResult['merchantName'];
-        $this->amount = $paymentResult['amount'];
-        $this->checkCount = $paymentResult['checkCount'];
-        $this->cardNumber = $paymentResult['cardNumber'];
-        $this->language = $paymentResult['language'];
-        $this->description = $paymentResult['description'];
-        $this->referenceNumber = $paymentResult['rrn'];
+        parent::__construct($code, $message);
 
-        if ($paymentResult['paymentDate']) {
-            $this->paymentDate = new \DateTimeImmutable($paymentResult['paymentDate']);
+        $this->paymentKey = new PaymentKey($code, $message, $data['paymentKey']);
+        $this->merchantName = $data['merchantName'];
+        $this->amount = $data['amount'];
+        $this->checkCount = $data['checkCount'];
+        $this->cardNumber = $data['cardNumber'];
+        $this->language = $data['language'];
+        $this->description = $data['description'];
+        $this->referenceNumber = $data['rrn'];
+
+        if ($data['paymentDate']) {
+            $this->paymentDate = new \DateTimeImmutable($data['paymentDate']);
         }
     }
 
     /**
-     * @return string
+     * @return PaymentKey
      */
-    public function getPaymentKey(): string
+    public function getPaymentKey(): PaymentKey
     {
         return $this->paymentKey;
     }

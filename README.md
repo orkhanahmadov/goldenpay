@@ -75,7 +75,7 @@ Method will return instance of ``Orkhanahmadov\Goldenpay\Response\PaymentResult`
 ```php
 $paymentResult->getCode(); // status code
 $paymentResult->getMessage(); // status message
-$paymentResult->getPaymentKey(); // payment key
+$paymentResult->getPaymentKey(); // instance of Orkhanahmadov\Goldenpay\Response\PaymentKey
 $paymentResult->getMerchantName(); // merchant name
 $paymentResult->getAmount(); // charged amount in integer format. 100 = 1.00
 $paymentResult->getCheckCount(); // shows how many times this payment key result checked
@@ -90,7 +90,7 @@ You can also use global helper function. Calling this function requires passing 
 
 ```php
 $goldenpay = goldenpay('auth-key-here', 'merchant-name-here'); // returns instance of "Orkhanahmadov\Goldenpay\Goldenpay"
-$goldenpay->paymentKey(100, 'v', 'your-description', 'en');
+$goldenpay->paymentKey(100, CardType::VISA(), 'your-description', Language::EN());
 ```
 
 ``Orkhanahmadov\Goldenpay\Goldenpay`` implements ``Orkhanahmadov\Goldenpay\GoldenpayInterface``. You can use this interface as abstraction for dependency injection.

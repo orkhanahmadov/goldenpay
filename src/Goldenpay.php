@@ -78,7 +78,11 @@ class Goldenpay implements PaymentInterface
             throw new GoldenpayPaymentKeyException($result['status']['message'].'. Code: '.$result['status']['code']);
         }
 
-        return new PaymentKey($result['status']['code'], $result['status']['message'], $result['paymentKey']);
+        return new PaymentKey(
+            $result['status']['code'],
+            $result['status']['message'],
+            $result['paymentKey']
+        );
     }
 
     /**
@@ -97,7 +101,11 @@ class Goldenpay implements PaymentInterface
             'hash_code'   => md5($this->authKey.$paymentKey),
         ]);
 
-        return new PaymentResult($result);
+        return new PaymentResult(
+            $result['status']['code'],
+            $result['status']['message'],
+            $result
+        );
     }
 
     /**
