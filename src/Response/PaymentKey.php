@@ -4,6 +4,8 @@ namespace Orkhanahmadov\Goldenpay\Response;
 
 class PaymentKey extends Response
 {
+    public const PAYMENT_PAGE = 'https://rest.goldenpay.az/web/paypage?payment_key=';
+
     /**
      * @var string
      */
@@ -28,7 +30,7 @@ class PaymentKey extends Response
      */
     public function paymentUrl(): string
     {
-        return 'https://rest.goldenpay.az/web/paypage?payment_key='.$this->paymentKey;
+        return self::PAYMENT_PAGE.$this->paymentKey;
     }
 
     /**
