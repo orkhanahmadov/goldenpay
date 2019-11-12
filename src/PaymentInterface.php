@@ -20,7 +20,7 @@ interface PaymentInterface
     public function auth(string $authKey, string $merchantName): self;
 
     /**
-     * Generates new payment key.
+     * Gets new payment key from Goldenpay.
      *
      * @param int $amount
      * @param CardType $cardType
@@ -29,7 +29,7 @@ interface PaymentInterface
      *
      * @return PaymentKey
      */
-    public function paymentKey(int $amount, CardType $cardType, string $description, ?Language $lang): PaymentKey;
+    public function payment(int $amount, CardType $cardType, string $description, Language $lang): PaymentKey;
 
     /**
      * Checks result of payment using existing payment key.
@@ -38,5 +38,5 @@ interface PaymentInterface
      *
      * @return PaymentResult
      */
-    public function paymentResult($paymentKey): PaymentResult;
+    public function result($paymentKey): PaymentResult;
 }

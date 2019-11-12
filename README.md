@@ -33,7 +33,7 @@ $goldenpay->auth('auth-key-here', 'merchant-name-here');
 ```
 
 ### Getting payment key
-To get new payment key use ``paymentKey`` method.
+To get new payment key use ``payment`` method.
 
 Method accepts following arguments:
 * **Amount** - Amount to charge. Only integer accepted. For example 10.25 needs to be converted to 1025
@@ -44,7 +44,7 @@ Method accepts following arguments:
 `Language::EN()` for english, `Language::RU()` for russian, `Language::AZ()` for azerbaijani. Default is azerbaijani
 
 ```php
-$paymentKey = $goldenpay->paymentKey(100, CardType::VISA(), 'item-description', Language::EN());
+$paymentKey = $goldenpay->payment(100, CardType::VISA(), 'item-description', Language::EN());
 ```
 
 Method will return instance of ``Orkhanahmadov\Goldenpay\Response\PaymentKey``. You can access payment key and payment url from this object instance.
@@ -59,13 +59,13 @@ $paymentKey->paymentUrl(); // payment url. you can redirect user to this url to 
 **Important!** Goldenpay charges all payments only in AZN.
 
 ### Checking payment result
-To check payment result use ``paymentResult`` method.
+To check payment result use ``result`` method.
 
 Method accepts following arguments:
 * **Payment key** - Previously available payment key
 
 ```php
-$paymentResult = $goldenpay->paymentResult('payment-key-here');
+$paymentResult = $goldenpay->result('payment-key-here');
 ```
 
 Method also accepts instance of ``Orkhanahmadov\Goldenpay\Response\PaymentKey`` as an argument.

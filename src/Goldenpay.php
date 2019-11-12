@@ -30,9 +30,7 @@ class Goldenpay implements PaymentInterface
      */
     public function __construct()
     {
-        $this->client = new Client([
-            'base_uri' => 'https://rest.goldenpay.az/web/service/merchant/',
-        ]);
+        $this->client = new Client(['base_uri' => 'https://rest.goldenpay.az/web/service/merchant/']);
     }
 
     /**
@@ -52,18 +50,18 @@ class Goldenpay implements PaymentInterface
     }
 
     /**
-     * Generates new payment key.
+     * Gets new payment key from Goldenpay.
      *
      * @param int $amount
      * @param CardType $cardType
      * @param string $description
-     * @param Language $lang
+     * @param Language|null $lang
      *
      * @throws GoldenpayPaymentKeyException
      *
      * @return PaymentKey
      */
-    public function paymentKey(int $amount, CardType $cardType, string $description, ?Language $lang = null): PaymentKey
+    public function payment(int $amount, CardType $cardType, string $description, ?Language $lang = null): PaymentKey
     {
         $result = $this->request('getPaymentKey', [
             'merchantName' => $this->merchantName,
@@ -92,7 +90,7 @@ class Goldenpay implements PaymentInterface
      *
      * @return PaymentResult
      */
-    public function paymentResult($paymentKey): PaymentResult
+    public function result($paymentKey): PaymentResult
     {
         $paymentKey = $paymentKey instanceof PaymentKey ? $paymentKey->getPaymentKey() : $paymentKey;
 

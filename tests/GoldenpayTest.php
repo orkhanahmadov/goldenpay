@@ -20,7 +20,7 @@ class GoldenpayTest extends TestCase
             ->post(self::API_BASE_URL . 'getPaymentKey')
             ->willRespond(new Response(200, [], $this->jsonFixture('payment_key')));
 
-        $paymentKey = $this->goldenpay->paymentKey(
+        $paymentKey = $this->goldenpay->payment(
             100,
             CardType::VISA(),
             'test description',
@@ -43,7 +43,7 @@ class GoldenpayTest extends TestCase
         $this->expectException(GoldenpayPaymentKeyException::class);
         $this->expectExceptionMessage('Error message here. Code: 801');
 
-        $this->goldenpay->paymentKey(
+        $this->goldenpay->payment(
             100,
             CardType::VISA(),
             'invalid description'
@@ -57,7 +57,7 @@ class GoldenpayTest extends TestCase
             ->get(self::API_BASE_URL . 'getPaymentResult')
             ->willRespond(new Response(200, [], $this->jsonFixture('successful_payment')));
 
-        $result = $this->goldenpay->paymentResult('valid-payment-key');
+        $result = $this->goldenpay->result('valid-payment-key');
 
         $this->assertEquals(1, $result->getCode());
         $this->assertEquals('success', $result->getMessage());
@@ -81,7 +81,7 @@ class GoldenpayTest extends TestCase
             ->get(self::API_BASE_URL . 'getPaymentResult')
             ->willRespond(new Response(200, [], $this->jsonFixture('successful_payment')));
 
-        $result = $this->goldenpay->paymentResult('valid-payment-key');
+        $result = $this->goldenpay->result('valid-payment-key');
 
         $this->assertEquals(1, $result->getCode());
         $this->assertEquals('success', $result->getMessage());
