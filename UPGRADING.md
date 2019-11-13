@@ -5,4 +5,4 @@ There are many edge cases this guide does not cover. PRs are welcome to improve 
 
 ## From v1 to v2
 
-Library went over complete overhaul. Check [README](README.md) for details.
+Library completely rewritten with too many breaking changes to list. Check [README](README.md) for details.
