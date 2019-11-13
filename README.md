@@ -23,13 +23,13 @@ composer require orkhanahmadov/goldenpay
 
 ## Usage
 
-First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` and call ``auth()`` method with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
+First, instantiate ``Orkhanahmadov\Goldenpay\Goldenpay`` and call ``authenticate()`` method with "auth key" and "merchant name". Both can be acquired from [Goldenpay merchant dashboard](https://rest.goldenpay.az/merchant/).
 
 ```php
 use Orkhanahmadov\Goldenpay\Goldenpay;
 
 $goldenpay = new Goldenpay();
-$goldenpay->auth('auth-key-here', 'merchant-name-here');
+$goldenpay->authenticate('auth-key-here', 'merchant-name-here');
 ```
 
 ### Getting payment key
