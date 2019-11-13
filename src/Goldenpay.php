@@ -4,6 +4,7 @@ namespace Orkhanahmadov\Goldenpay;
 
 use GuzzleHttp\Client;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
+use function GuzzleHttp\json_decode;
 
 class Goldenpay implements GoldenpayInterface
 {
@@ -74,7 +75,7 @@ class Goldenpay implements GoldenpayInterface
     {
         $result = $this->sendRequest('https://rest.goldenpay.az/web/service/merchant/getPaymentResult', [
             'payment_key' => $paymentKey,
-            'Hash_code'   => md5($this->authKey.$paymentKey),
+            'hash_code'   => md5($this->authKey.$paymentKey),
         ]);
 
         return new PaymentResult($result);
@@ -84,16 +85,23 @@ class Goldenpay implements GoldenpayInterface
      * Sends requests to GoldenPay endpoint.
      *
      * @param string $url
-     * @param array  $json
+     * @param array  $data
      *
      * @return array
      */
-    private function sendRequest(string $url, array $json)
+    private function sendRequest(string $url, array $data)
     {
-        $response = $this->client->post($url, [
-            'headers' => ['Accept' => 'application/json'],
-            'json'    => $json,
-        ]);
+        if ($url === 'https://rest.goldenpay.az/web/service/merchant/getPaymentResult') {
+            $response = $this->client->get($url, [
+                'headers' => ['Accept' => 'application/json'],
+                'query'   => $data,
+            ]);
+        } else {
+            $response = $this->client->post($url, [
+                'headers' => ['Accept' => 'application/json', 'Content-Type' => 'application/json'],
+                'json'    => $data,
+            ]);
+        }
 
         return json_decode($response->getBody()->getContents(), true);
     }
