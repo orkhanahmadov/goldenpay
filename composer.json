@@ -1,23 +1,30 @@
 {
     "name": "orkhanahmadov/goldenpay",
     "description": "GoldenPay payment library for PHP and Laravel framework",
+    "keywords": [
+        "orkhanahmadov",
+        "azerbaijan",
+        "goldenpay",
+        "payment"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Orkhan I. Ahmadov",
-            "email": "ahmadov90@gmail.com"
+            "name": "Orkhan Ahmadov",
+            "email": "ahmadov90@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=7.1.0",
+        "php": "^7.2.0",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "myclabs/php-enum": "^1.7"
     },
     "require-dev": {
         "blastcloud/guzzler": "^1.4",
-        "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*",
-        "phpunit/phpunit": "^6.0|^7.0|^8.0"
+        "phpunit/phpunit": "^7.0|^8.0"
     },
     "autoload": {
         "psr-4": {
@@ -38,15 +45,5 @@
     },
     "config": {
         "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Orkhanahmadov\\Goldenpay\\Laravel\\ServiceProvider"
-            ],
-            "aliases": {
-                "Goldenpay": "Orkhanahmadov\\Goldenpay\\Laravel\\Facades\\Goldenpay"
-            }
-        }
     }
 }

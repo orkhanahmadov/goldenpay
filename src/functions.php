@@ -6,17 +6,13 @@ if (!function_exists('goldenpay')) {
     /**
      * Global helper function.
      *
-     * @param string|null $authKey
-     * @param string|null $merchantName
+     * @param string $authKey
+     * @param string $merchantName
      *
      * @return Goldenpay
      */
-    function goldenpay(string $authKey = null, string $merchantName = null)
+    function goldenpay(string $authKey, string $merchantName)
     {
-        if ($authKey && $merchantName) {
-            return new Goldenpay($authKey, $merchantName);
-        }
-
-        return new Goldenpay(config('goldenpay.auth_key'), config('goldenpay.merchant_name'));
+        return (new Goldenpay())->auth($authKey, $merchantName);
     }
 }

@@ -1,6 +1,0 @@
-<?php
-
-return [
-    'auth_key' => env('GOLDENPAY_AUTH_KEY'),
-    'merchant_name' => env('GOLDENPAY_MERCHANT_NAME')
-];

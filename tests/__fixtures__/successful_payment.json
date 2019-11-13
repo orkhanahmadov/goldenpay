@@ -1,0 +1,15 @@
+{
+    "status": {
+        "code": 1,
+        "message": "success"
+    },
+    "paymentKey": "valid-payment-key",
+    "merchantName": "valid-merchant-name",
+    "amount": 100,
+    "checkCount": 1,
+    "paymentDate": "2019-04-30 14:16:58",
+    "cardNumber": "422865******8101",
+    "language": "lv",
+    "description": "test desc",
+    "rrn": "12345678"
+}
