@@ -44,9 +44,9 @@ class PaymentResult extends Response
     /**
      * PaymentResult constructor.
      *
-     * @param int $code
+     * @param int    $code
      * @param string $message
-     * @param array $data
+     * @param array  $data
      */
     public function __construct(int $code, string $message, array $data)
     {

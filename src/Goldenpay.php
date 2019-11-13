@@ -3,12 +3,12 @@
 namespace Orkhanahmadov\Goldenpay;
 
 use GuzzleHttp\Client;
+use function GuzzleHttp\json_decode;
 use Orkhanahmadov\Goldenpay\Enums\CardType;
 use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use Orkhanahmadov\Goldenpay\Response\PaymentKey;
 use Orkhanahmadov\Goldenpay\Response\PaymentResult;
-use function GuzzleHttp\json_decode;
 
 class Goldenpay implements PaymentInterface
 {
@@ -52,9 +52,9 @@ class Goldenpay implements PaymentInterface
     /**
      * Gets new payment key from Goldenpay.
      *
-     * @param int $amount
-     * @param CardType $cardType
-     * @param string $description
+     * @param int           $amount
+     * @param CardType      $cardType
+     * @param string        $description
      * @param Language|null $lang
      *
      * @throws GoldenpayPaymentKeyException
