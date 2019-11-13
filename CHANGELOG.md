@@ -2,6 +2,9 @@
 
 All notable changes to `goldenpay` will be documented in this file
 
+### 1.3.0 - 2019-11-13
+- `checkPaymentResult()` method request fixed
+
 ### 1.2.0 - 2019-07-30
 - Dependency requirements lowered
 
