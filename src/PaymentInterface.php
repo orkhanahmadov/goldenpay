@@ -17,14 +17,14 @@ interface PaymentInterface
      *
      * @return PaymentInterface
      */
-    public function auth(string $authKey, string $merchantName): PaymentInterface;
+    public function auth(string $authKey, string $merchantName): self;
 
     /**
      * Gets new payment key from Goldenpay.
      *
-     * @param int $amount
+     * @param int      $amount
      * @param CardType $cardType
-     * @param string $description
+     * @param string   $description
      * @param Language $lang
      *
      * @return PaymentKey

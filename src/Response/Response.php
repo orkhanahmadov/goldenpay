@@ -16,7 +16,7 @@ abstract class Response
     /**
      * Response constructor.
      *
-     * @param int $code
+     * @param int    $code
      * @param string $message
      */
     public function __construct(int $code, string $message)
