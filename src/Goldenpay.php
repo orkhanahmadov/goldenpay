@@ -3,8 +3,8 @@
 namespace Orkhanahmadov\Goldenpay;
 
 use GuzzleHttp\Client;
-use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use function GuzzleHttp\json_decode;
+use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 
 class Goldenpay implements GoldenpayInterface
 {
