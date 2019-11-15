@@ -14,7 +14,7 @@ class PaymentKey extends Response
     /**
      * PaymentKey constructor.
      *
-     * @param string $paymentKey
+     * @param string      $paymentKey
      * @param int|null    $code
      * @param string|null $message
      */
