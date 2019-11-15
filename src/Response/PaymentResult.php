@@ -44,15 +44,15 @@ class PaymentResult extends Response
     /**
      * PaymentResult constructor.
      *
+     * @param array  $data
      * @param int    $code
      * @param string $message
-     * @param array  $data
      */
-    public function __construct(int $code, string $message, array $data)
+    public function __construct(array $data, int $code, string $message)
     {
         parent::__construct($code, $message);
 
-        $this->paymentKey = new PaymentKey($code, $message, $data['paymentKey']);
+        $this->paymentKey = new PaymentKey($data['paymentKey']);
         $this->merchantName = $data['merchantName'];
         $this->amount = $data['amount'];
         $this->checkCount = $data['checkCount'];

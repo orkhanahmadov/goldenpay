@@ -3,12 +3,12 @@
 namespace Orkhanahmadov\Goldenpay;
 
 use GuzzleHttp\Client;
-use function GuzzleHttp\json_decode;
 use Orkhanahmadov\Goldenpay\Enums\CardType;
 use Orkhanahmadov\Goldenpay\Enums\Language;
 use Orkhanahmadov\Goldenpay\Exceptions\GoldenpayPaymentKeyException;
 use Orkhanahmadov\Goldenpay\Response\PaymentKey;
 use Orkhanahmadov\Goldenpay\Response\PaymentResult;
+use function GuzzleHttp\json_decode;
 
 class Goldenpay implements PaymentInterface
 {
@@ -77,9 +77,9 @@ class Goldenpay implements PaymentInterface
         }
 
         return new PaymentKey(
+            $result['paymentKey'],
             $result['status']['code'],
-            $result['status']['message'],
-            $result['paymentKey']
+            $result['status']['message']
         );
     }
 
@@ -100,9 +100,9 @@ class Goldenpay implements PaymentInterface
         ]);
 
         return new PaymentResult(
+            $result,
             $result['status']['code'],
-            $result['status']['message'],
-            $result
+            $result['status']['message']
         );
     }
 

@@ -14,11 +14,11 @@ class PaymentKey extends Response
     /**
      * PaymentKey constructor.
      *
-     * @param int    $code
-     * @param string $message
      * @param string $paymentKey
+     * @param int|null    $code
+     * @param string|null $message
      */
-    public function __construct(int $code, string $message, string $paymentKey)
+    public function __construct(string $paymentKey, ?int $code = null, ?string $message = null)
     {
         parent::__construct($code, $message);
 

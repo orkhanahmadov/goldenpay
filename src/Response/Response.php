@@ -5,38 +5,38 @@ namespace Orkhanahmadov\Goldenpay\Response;
 abstract class Response
 {
     /**
-     * @var int
+     * @var int|null
      */
-    protected $code;
+    protected $code = null;
     /**
-     * @var string
+     * @var string|null
      */
-    protected $message;
+    protected $message = null;
 
     /**
      * Response constructor.
      *
-     * @param int    $code
-     * @param string $message
+     * @param int|null    $code
+     * @param string|null $message
      */
-    public function __construct(int $code, string $message)
+    public function __construct(?int $code, ?string $message)
     {
         $this->code = $code;
         $this->message = $message;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCode(): int
+    public function getCode(): ?int
     {
         return $this->code;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMessage(): string
+    public function getMessage(): ?string
     {
         return $this->message;
     }
