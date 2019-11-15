@@ -2,7 +2,7 @@
 
 All notable changes to `goldenpay` will be documented in this file
 
-### 2.0.0 - 2019-11-13
+### 2.0.0 - 2019-11-15
 - Library completely rewritten
 - Laravel related functionality removed.
 Use [laravel-goldenpay](https://github.com/orkhanahmadov/laravel-goldenpay) package for full-feature Laravel integration.
