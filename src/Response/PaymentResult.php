@@ -2,6 +2,8 @@
 
 namespace Orkhanahmadov\Goldenpay\Response;
 
+use DateTimeImmutable;
+
 class PaymentResult extends Response
 {
     /**
@@ -21,7 +23,7 @@ class PaymentResult extends Response
      */
     private $checkCount;
     /**
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     private $paymentDate = null;
     /**
@@ -62,7 +64,7 @@ class PaymentResult extends Response
         $this->referenceNumber = $data['rrn'];
 
         if ($data['paymentDate']) {
-            $this->paymentDate = new \DateTimeImmutable($data['paymentDate']);
+            $this->paymentDate = new DateTimeImmutable($data['paymentDate']);
         }
     }
 
@@ -99,9 +101,9 @@ class PaymentResult extends Response
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return DateTimeImmutable|null
      */
-    public function getPaymentDate(): ?\DateTimeImmutable
+    public function getPaymentDate(): ?DateTimeImmutable
     {
         return $this->paymentDate;
     }

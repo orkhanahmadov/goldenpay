@@ -53,7 +53,7 @@ Method will return instance of ``Orkhanahmadov\Goldenpay\Response\PaymentKey``. 
 $paymentKey->getCode(); // endpoint response code
 $paymentKey->getMessage(); // endpoint response message
 $paymentKey->getPaymentKey(); // unique payment key
-$paymentKey->paymentUrl(); // payment url. you can redirect user to this url to start payment
+$paymentKey->paymentUrl(); // payment url. you should redirect user to this url to start payment
 ```
 
 **Important!** Goldenpay charges all payments only in AZN.
