@@ -16,14 +16,12 @@ env:
         - COMPOSER_FLAGS="--prefer-lowest"
         - COMPOSER_FLAGS=""
 
-before_install:
+before_script:
     - travis_retry composer self-update
+    - travis_retry composer install --no-interaction
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
     - ./cc-test-reporter before-build
-
-install:
-    - travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
 script:
     - vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
