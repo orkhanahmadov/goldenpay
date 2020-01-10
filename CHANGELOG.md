@@ -2,6 +2,10 @@
 
 All notable changes to `goldenpay` will be documented in this file
 
+### 2.1.0 - 2020-01-10
+- PHP 7.4 support
+- PSR-12 code-style changes
+
 ### 2.0.0 - 2019-11-15
 - Library completely rewritten
 - Laravel related functionality removed.
