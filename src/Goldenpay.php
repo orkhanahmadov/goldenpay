@@ -69,11 +69,11 @@ class Goldenpay implements PaymentInterface
             'cardType'     => $cardType->getValue(),
             'description'  => $description,
             'lang'         => $lang ? $lang->getValue() : 'lv',
-            'hashCode'     => md5($this->authKey.$this->merchantName.$cardType->getValue().$amount.$description),
+            'hashCode'     => md5($this->authKey . $this->merchantName . $cardType->getValue() . $amount . $description),
         ]);
 
         if ($result['status']['code'] !== 1) {
-            throw new GoldenpayPaymentKeyException($result['status']['message'].'. Code: '.$result['status']['code']);
+            throw new GoldenpayPaymentKeyException($result['status']['message'] . '. Code: ' . $result['status']['code']);
         }
 
         return new PaymentKey(
@@ -96,7 +96,7 @@ class Goldenpay implements PaymentInterface
 
         $result = $this->request('getPaymentResult', [
             'payment_key' => $paymentKey,
-            'hash_code'   => md5($this->authKey.$paymentKey),
+            'hash_code'   => md5($this->authKey . $paymentKey),
         ]);
 
         return new PaymentResult(

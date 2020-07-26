@@ -30,6 +30,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function jsonFixture(string $fileName): string
     {
-        return file_get_contents(__DIR__.'/__fixtures__/'.$fileName.'.json');
+        return file_get_contents(__DIR__ . '/__fixtures__/' . $fileName . '.json');
     }
 }
