@@ -1,5 +1,7 @@
 # :credit_card: [GoldenPay](http://www.goldenpay.az) library for PHP
 
+#### If you are using Laravel, you can use [`laravel-goldenpay`](https://github.com/orkhanahmadov/laravel-goldenpay) package instead for better integration with more features.
+
 [![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/stable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 [![Latest Unstable Version](https://poser.pugx.org/orkhanahmadov/goldenpay/v/unstable)](https://packagist.org/packages/orkhanahmadov/goldenpay)
 [![Total Downloads](https://img.shields.io/packagist/dt/orkhanahmadov/goldenpay)](https://packagist.org/packages/orkhanahmadov/goldenpay)
