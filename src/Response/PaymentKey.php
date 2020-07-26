@@ -38,6 +38,6 @@ class PaymentKey extends Response
      */
     public function paymentUrl(): string
     {
-        return self::PAYMENT_PAGE.$this->paymentKey;
+        return self::PAYMENT_PAGE . $this->paymentKey;
     }
 }
