@@ -9,7 +9,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 {
     use UsesGuzzler;
 
-    const API_BASE_URL = 'https://rest.goldenpay.az/web/service/merchant/';
+    public const API_BASE_URL = 'https://rest.goldenpay.az/web/service/merchant/';
     /**
      * @var Goldenpay
      */
