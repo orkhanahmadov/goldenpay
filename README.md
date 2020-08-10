@@ -92,7 +92,7 @@ You can also use global helper function. Calling this function requires passing 
 
 ```php
 $goldenpay = goldenpay('auth-key-here', 'merchant-name-here'); // returns instance of "Orkhanahmadov\Goldenpay\Goldenpay"
-$goldenpay->paymentKey(100, CardType::VISA(), 'your-description', Language::EN());
+$goldenpay->payment(100, CardType::VISA(), 'your-description', Language::EN());
 ```
 
 ``Orkhanahmadov\Goldenpay\Goldenpay`` implements ``Orkhanahmadov\Goldenpay\GoldenpayInterface``. You can use this interface as abstraction for dependency injection.
